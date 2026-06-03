@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Json;
 
 namespace ArtichautLibrary.Services;
@@ -11,6 +12,27 @@ public class BookingService: IBookingService
         _httpClient = httpClient;
     }
 
+    /// <summary>
+    /// Creates a new booking.
+    /// </summary>
+    /// <param name="startBookedDate">
+    /// Start date of the booking.
+    /// </param>
+    /// <param name="endBookedDate">
+    /// End date of the booking.
+    /// </param>
+    /// <param name="adultNumber">
+    /// Number of adults.
+    /// </param>
+    /// <param name="childrenNumber">
+    /// Number of children.
+    /// </param>
+    /// <param name="roomType">
+    /// Room type code.
+    /// </param>
+    /// <returns>
+    /// The created booking if successful; otherwise null.
+    /// </returns>
     public async Task<BookingResponse?> CreateBooking(DateOnly startBookedDate,
         DateOnly endBookedDate,
         int adultNumber,
@@ -24,11 +46,41 @@ public class BookingService: IBookingService
             request
         );
 
-        response.EnsureSuccessStatusCode();
+        Console.WriteLine($"Status code = {response.StatusCode}");
+        switch (response.StatusCode)
+        {
+            case HttpStatusCode.OK:
+            case HttpStatusCode.Created:
+            {
+                return await response.Content
+                    .ReadFromJsonAsync<BookingResponse>();
+            }
 
-        BookingResponse? booking = await response.Content
-            .ReadFromJsonAsync<BookingResponse?>();
-        
-        return booking;
+            case HttpStatusCode.Conflict:
+            {
+                var message =  await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Conflit de réservation : {message}");
+                return null;
+            }
+
+            case HttpStatusCode.Unauthorized:
+            {
+                Console.WriteLine("Non authentifié");
+                return null;
+            }
+
+            case HttpStatusCode.Forbidden:
+            {
+                Console.WriteLine("Accès interdit");
+                return null;
+            }
+
+            default:
+            {
+                Console.WriteLine(
+                    $"Erreur HTTP {(int)response.StatusCode}");
+                return null;
+            }
+        }
     }
 }

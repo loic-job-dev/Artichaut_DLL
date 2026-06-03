@@ -13,9 +13,32 @@ public class AuthService: IAuthService
         _httpClient = httpClient;
     }
 
-    public async Task<AuthResponse?> Login(string username, string password)
+    /// <summary>
+    /// Authenticates a user against the Artichaut API.
+    /// </summary>
+    /// <remarks>
+    /// On successful authentication, the JWT access token returned by the API
+    /// is automatically stored and added as a Bearer token to the default
+    /// HTTP request headers. Subsequent requests performed with this client
+    /// will therefore be authenticated.
+    /// </remarks>
+    /// <param name="email">
+    /// Email address used to authenticate the user.
+    /// </param>
+    /// <param name="password">
+    /// Password associated with the user's account.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AuthResponse"/> containing the authenticated user's
+    /// information and access token if the authentication succeeds;
+    /// otherwise <c>null</c>.
+    /// </returns>
+    /// <exception cref="HttpRequestException">
+    /// Thrown when the API returns a non-success status code.
+    /// </exception>
+    public async Task<AuthResponse?> Login(string email, string password)
     {
-        var request = new LoginRequest(username, password);
+        var request = new LoginRequest(email, password);
 
         var response = await _httpClient.PostAsJsonAsync(
             "/auth/login",
@@ -43,6 +66,15 @@ public class AuthService: IAuthService
         return auth;
     }
     
+    /// <summary>
+    /// Logs out the current user.
+    /// </summary>
+    /// <remarks>
+    /// Removes the stored access token and clears the Authorization header
+    /// from the underlying HTTP client. After calling this method,
+    /// authenticated endpoints can no longer be accessed until
+    /// <see cref="Login(string, string)"/> is called again.
+    /// </remarks>
     public void  Logout()
     {
         _httpClient.DefaultRequestHeaders.Authorization = null;

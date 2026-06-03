@@ -2,7 +2,7 @@ namespace ArtichautLibrary.Services;
 
 public interface IAuthService
 {
-    Task<AuthResponse?> Login(string username, string password);
+    Task<AuthResponse?> Login(string email, string password);
     
     void Logout();
 }

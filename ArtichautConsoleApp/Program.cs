@@ -1,4 +1,6 @@
-﻿using ArtichautLibrary;
+﻿using System;
+using System.Threading.Tasks;
+using ArtichautLibrary;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ArtichautConsoleApp;
@@ -30,6 +32,8 @@ class Program
         {
             Console.WriteLine(role);
         }
+        
+        //client.Auth.Logout();
 
         var booking = await client.Booking.CreateBooking(
         DateOnly.FromDateTime(DateTime.Now),
