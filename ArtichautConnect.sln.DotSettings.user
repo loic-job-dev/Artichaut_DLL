@@ -1,0 +1,10 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0cde35ad_002Dd57d_002D48f1_002D9d9f_002Dca7c99db2833/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AddArtichautClient_Should_Register_Client" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/home/loic/RiderProjects/ArtichautConnect/TestArtichautDll" Presentation="&amp;lt;TestArtichautDll&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=64a8299a_002D96de_002D48d3_002D9b3e_002De30d28becdb8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddArtichautClient_Should_Register_Client #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::24B2F4D7-426A-46E9-B468-AA3305F43CD2::net10.0::TestArtichautDll.DependencyInjectionTests.AddArtichautClient_Should_Register_Client&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	</wpf:ResourceDictionary>
