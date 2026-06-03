@@ -22,12 +22,8 @@ public class AuthService: IAuthService
     /// HTTP request headers. Subsequent requests performed with this client
     /// will therefore be authenticated.
     /// </remarks>
-    /// <param name="email">
-    /// Email address used to authenticate the user.
-    /// </param>
-    /// <param name="password">
-    /// Password associated with the user's account.
-    /// </param>
+    /// <param name="email"> Email address used to authenticate the user. </param>
+    /// <param name="password"> Password associated with the user's account. </param>
     /// <returns>
     /// An <see cref="AuthResponse"/> containing the authenticated user's
     /// information and access token if the authentication succeeds;
@@ -79,5 +75,88 @@ public class AuthService: IAuthService
     {
         _httpClient.DefaultRequestHeaders.Authorization = null;
         AccessToken = null;
+    }
+
+    /// <summary>
+    /// Creates a new user account in the Artichaut API and authenticates the user.
+    /// </summary>
+    /// <remarks>
+    /// On successful registration, the JWT access token returned by the API
+    /// is automatically stored and added as a Bearer token to the default
+    /// HTTP request headers. Subsequent requests performed with this client
+    /// will therefore be authenticated.
+    /// </remarks>
+    /// <param name="email">Email address of the new user.</param>
+    /// <param name="password"> Password of the new user. </param>
+    /// <param name="firstName"> User's first name. </param>
+    /// <param name="lastName"> User's last name. </param>
+    /// <param name="phoneNumber"> User's phone number. </param>
+    /// <param name="pseudo"> User's public username. </param>
+    /// <param name="streetNumber"> Street number of the user's address. </param>
+    /// <param name="streetType"> Street type (e.g. Street, Avenue, Boulevard). </param>
+    /// <param name="streetName"> Street name of the user's address. </param>
+    /// <param name="addressComplement"> Optional address complement. </param>
+    /// <param name="zipCode"> Postal or ZIP code. </param>
+    /// <param name="city"> City of residence. </param>
+    /// <returns>
+    /// An <see cref="AuthResponse"/> containing the authenticated user's
+    /// information and access token if the registration succeeds;
+    /// otherwise <c>null</c>.
+    /// </returns>
+    /// <exception cref="HttpRequestException">
+    /// Thrown when the API returns a non-success status code.
+    /// </exception>
+    public async Task<AuthResponse?> SignUp(
+        string email,
+        string password,
+        string firstName,
+        string lastName,
+        string phoneNumber,
+        string pseudo,
+        int streetNumber,
+        string streetType,
+        string streetName,
+        string? addressComplement,
+        string zipCode,
+        string city
+        )
+    {
+        var request = new SignUpRequest(email, 
+            password, 
+            firstName, 
+            lastName, 
+            phoneNumber, 
+            pseudo, 
+            streetNumber,
+            streetType, 
+            streetName, 
+            addressComplement, 
+            zipCode, 
+            city);
+        
+        var response = await _httpClient.PostAsJsonAsync(
+            "/auth/signup",
+            request
+        );
+
+        response.EnsureSuccessStatusCode();
+
+        AuthResponse? auth = await response.Content
+            .ReadFromJsonAsync<AuthResponse>();
+        
+        //Definition of the bearer token by default in headers
+        if (auth?.AccessToken != null)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue(
+                    "Bearer",
+                    auth.AccessToken
+                );
+            
+            //recording the token, see later IMemoryCache
+            AccessToken = auth.AccessToken;
+        }
+        
+        return auth;
     }
 }

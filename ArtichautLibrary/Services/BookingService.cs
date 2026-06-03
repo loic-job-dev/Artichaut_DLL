@@ -15,21 +15,11 @@ public class BookingService: IBookingService
     /// <summary>
     /// Creates a new booking.
     /// </summary>
-    /// <param name="startBookedDate">
-    /// Start date of the booking.
-    /// </param>
-    /// <param name="endBookedDate">
-    /// End date of the booking.
-    /// </param>
-    /// <param name="adultNumber">
-    /// Number of adults.
-    /// </param>
-    /// <param name="childrenNumber">
-    /// Number of children.
-    /// </param>
-    /// <param name="roomType">
-    /// Room type code.
-    /// </param>
+    /// <param name="startBookedDate"> Start date of the booking. </param>
+    /// <param name="endBookedDate"> End date of the booking. </param>
+    /// <param name="adultNumber"> Number of adults. </param>
+    /// <param name="childrenNumber"> Number of children. </param>
+    /// <param name="roomType"> Room type code. </param>
     /// <returns>
     /// The created booking if successful; otherwise null.
     /// </returns>
@@ -45,8 +35,7 @@ public class BookingService: IBookingService
             "/bookings",
             request
         );
-
-        Console.WriteLine($"Status code = {response.StatusCode}");
+        
         switch (response.StatusCode)
         {
             case HttpStatusCode.OK:
