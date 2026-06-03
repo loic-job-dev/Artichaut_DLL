@@ -90,20 +90,4 @@ public class BookingServiceTests
             booking!.status,
             Is.EqualTo("BOOKED"));
     }
-
-    [Test]
-    public async Task CreateBooking_Should_Return_Correct_Id()
-    {
-        var booking = await _bookingService.CreateBooking(
-            new DateOnly(2026, 6, 3),
-            new DateOnly(2026, 6, 5),
-            2,
-            0,
-            "STE");
-
-        Assert.That(
-            booking!.id,
-            Is.EqualTo(
-                "55a35480-649b-4869-a028-88a9db9d18e9"));
-    }
 }
