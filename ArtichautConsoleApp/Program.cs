@@ -18,44 +18,26 @@ class Program
         var provider = services.BuildServiceProvider();
 
         var client = provider.GetRequiredService<ArtichautClient>();
-
-        var auth = await client.Auth.Login(
-            "rlame@artichaut.fr",
-            "RaitournelleDeGalles"
-        );
-
         
-
-        if (auth.Success)
-        {
-            Console.WriteLine(auth.Data.UserId);
-        } 
-        else
-        {
-            Console.WriteLine(auth.ErrorMessage);
-        }
+         // var authClient = await client.Auth.SignUp(
+         //     "john.doe@test.com",
+         //     "Password123!",
+         //     "John",
+         //     "Doe",
+         //     "0612345678",
+         //     "johndoe",
+         //     12,
+         //     "Rue",
+         //     "de la Paix",
+         //     null,
+         //     "75001",
+         //     "Paris"
+         // );
         
-        client.Auth.Logout();
-        
-         var authClient = await client.Auth.SignUp(
+         var authClient = await client.Auth.Login(
              "john.doe@test.com",
-             "Password123!",
-             "John",
-             "Doe",
-             "0612345678",
-             "johndoe",
-             12,
-             "Rue",
-             "de la Paix",
-             null,
-             "75001",
-             "Paris"
+             "Password123!"
          );
-        
-        // var authClient = await client.Auth.Login(
-        //     "john.doe@test.com",
-        //     "Password123!"
-        // );
 
         if (authClient.Success)
         {
@@ -74,15 +56,52 @@ class Program
         DateOnly.FromDateTime(DateTime.Now.AddDays(2)),
         2, 
         0, 
-        "STE");
+        "STD");
+        
+        //Test for checkin
+        string status = result.Data.Status;
+        DateOnly startBookedDate = result.Data.StartBookedDate;
+        var bookingIg = result.Data.Id.ToString();
+        var roomTypeId = result.Data.RoomTypes.First().Id.ToString();
         
         if (result.Success)
         {
-            Console.WriteLine(result.Data);
+            
         }
         else
         {
             Console.WriteLine(result.ErrorMessage);
+        }
+        
+        client.Auth.Logout();
+        
+        var auth = await client.Auth.Login(
+            "rlame@artichaut.fr",
+            "RaitournelleDeGalles"
+        );
+        
+        if (auth.Success)
+        {
+            Console.WriteLine(auth.Data.UserId);
+        } 
+        else
+        {
+            Console.WriteLine(auth.ErrorMessage);
+        }
+        
+        var checkin = await client.Booking.Checkin(
+            status,
+            startBookedDate,
+            roomTypeId,
+            bookingIg);
+        
+        if (checkin.Success)
+        {
+            Console.WriteLine(checkin.Data);
+        }
+        else
+        {
+            Console.WriteLine(checkin.ErrorMessage);
         }
     }
 }

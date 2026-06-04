@@ -34,13 +34,13 @@ var auth = await client.Auth.Login(
 );
 
 if (auth.Success)
-        {
-            Console.WriteLine(auth.Data.UserId);
-        } 
-        else
-        {
-            Console.WriteLine(auth.ErrorMessage);
-        }
+{
+    Console.WriteLine(auth.Data.UserId);
+} 
+else
+{
+    Console.WriteLine(auth.ErrorMessage);
+}
 ```
 
 On successful authentication, the JWT access token is automatically stored and added to all subsequent requests.

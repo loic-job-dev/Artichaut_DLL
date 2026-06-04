@@ -1,6 +1,6 @@
 namespace ArtichautLibrary;
 
-public record SignUpRequest(
+internal record SignUpRequest(
     string Email,
     string Password,
     string FirstName,
@@ -13,4 +13,4 @@ public record SignUpRequest(
     string? AddressComplement,
     string ZipCode,
     string City
-);
+    );

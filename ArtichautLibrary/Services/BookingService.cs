@@ -1,3 +1,4 @@
+using System.Diagnostics.Metrics;
 using System.Net;
 using System.Net.Http.Json;
 
@@ -21,9 +22,12 @@ public class BookingService: IBookingService
     /// <param name="childrenNumber"> Number of children. </param>
     /// <param name="roomType"> Room type code. </param>
     /// <returns>
-    /// The created booking if successful; the error message if not.
+    /// An <see cref="ApiResult{T}"/> containing the created
+    /// <see cref="BookingResponse"/> when successful; otherwise
+    /// an error message.
     /// </returns>
-    public async Task<ApiResult<BookingResponse>> CreateBooking(DateOnly startBookedDate,
+    public async Task<ApiResult<BookingResponse>> CreateBooking(
+        DateOnly startBookedDate,
         DateOnly endBookedDate,
         int adultNumber,
         int childrenNumber,
@@ -33,6 +37,69 @@ public class BookingService: IBookingService
 
         var response = await _httpClient.PostAsJsonAsync(
             "/bookings",
+            request
+        );
+        
+        switch (response.StatusCode)
+        {
+            case HttpStatusCode.OK:
+            case HttpStatusCode.Created:
+            {
+                BookingResponse? booking = await response.Content
+                    .ReadFromJsonAsync<BookingResponse>();
+                
+                return new ApiResult<BookingResponse>(
+                    true,
+                    booking,
+                    null
+                );
+            }
+
+            case HttpStatusCode.Conflict:
+            case HttpStatusCode.Unauthorized:
+            case HttpStatusCode.Forbidden:
+            {
+                var message =  await response.Content.ReadAsStringAsync();
+                return new ApiResult<BookingResponse>(
+                    false,
+                    null,
+                    message
+                );
+            }
+
+            default:
+            {
+                return new ApiResult<BookingResponse>(
+                    false,
+                    null,
+                    "Erreur de connexion à l'API"
+                );
+            }
+        }
+    }
+
+    /// <summary>
+    /// Performs check-in for an existing booking.
+    /// </summary>
+    /// <param name="status"> Status of the booking. </param>
+    /// <param name="startBookedDate"> Start date of the booking. </param>
+    /// <param name="roomTypeId"> The unique identifier of the booked room type. </param>
+    /// <param name="bookingId"> The unique identifier of the booking. </param>
+    /// <returns>
+    /// An <see cref="ApiResult{T}"/> containing the updated
+    /// <see cref="BookingResponse"/> when successful; otherwise
+    /// an error message.
+    /// </returns>
+    public async Task<ApiResult<BookingResponse>> Checkin(
+        string status,
+        DateOnly startBookedDate,
+        string roomTypeId,
+        string bookingId)
+    {
+        var request = new CheckinRequest(status, startBookedDate, roomTypeId);
+
+        var response = await _httpClient.PutAsJsonAsync(
+            $"/bookings/{bookingId}/checkin",
             request
         );
         
