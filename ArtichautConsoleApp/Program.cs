@@ -104,11 +104,28 @@ class Program
         //     Console.WriteLine(checkin.ErrorMessage);
         // }
 
-        var bookingsToCheckin = await client.Booking.GetBookingsByClient("John", "Doe");
+        var bookingsToCheckin = await client.Booking.GetBookingsToCheckinByClient("John", "Doe");
 
         if (bookingsToCheckin.Success)
         {
             foreach (var booking in bookingsToCheckin.Data)
+            {
+                Console.WriteLine($"Id de la réservation : {booking.Id}");
+                Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");
+                Console.WriteLine($"Statut de la réservation : {booking.Status}\n");
+            }
+        }
+        else
+        {
+            Console.WriteLine(bookingsToCheckin.ErrorMessage);
+        }
+        
+        
+        var bookingsToCheckout = await client.Booking.GetBookingsToCheckoutByClient("John", "Doe");
+
+        if (bookingsToCheckin.Success)
+        {
+            foreach (var booking in bookingsToCheckout.Data)
             {
                 Console.WriteLine($"Id de la réservation : {booking.Id}");
                 Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");

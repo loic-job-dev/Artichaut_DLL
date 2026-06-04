@@ -52,8 +52,22 @@ public interface IBookingService
     /// An <see cref="ApiResult{T}"/> containing the list of
     /// <see cref="BookingResponse"/> available for a check-in.
     /// </returns>
-    Task<ApiResult<List<BookingResponse>>> GetBookingsByClient(
+    Task<ApiResult<List<BookingResponse>>> GetBookingsToCheckinByClient(
         string firstName,
         string lastName
         );
+    
+    /// <summary>
+    /// Retrieve the list of bookings for a given client with a CHECK_IN status.
+    /// </summary>
+    /// <param name="firstName"> The client's first name. </param>
+    /// <param name="lastName"> The client's last name. </param>
+    /// <returns>
+    /// An <see cref="ApiResult{T}"/> containing the list of
+    /// <see cref="BookingResponse"/> available for a check-out.
+    /// </returns>
+    Task<ApiResult<List<BookingResponse>>> GetBookingsToCheckoutByClient(
+        string firstName,
+        string lastName
+    );
 }

@@ -56,7 +56,7 @@ This removes the stored access token and clears the Authorization header.
 ## Retrieves the possible bookings to perform a check-in
 
 ```csharp
-var bookingsToCheckin = await client.Booking.GetBookingsByClient("John", "Doe");
+var bookingsToCheckin = await client.Booking.GetBookingsToCheckinByClient("John", "Doe");
 
 if (bookingsToCheckin.Success)
 {
@@ -97,6 +97,28 @@ else
 ```
 
 This allows to display the error messages sent by the API in case of 409 status code by exemple.
+
+## Retrieves the possible bookings to perform a check-out
+
+```csharp
+var bookingsToCheckout = await client.Booking.GetBookingsToCheckoutByClient("John", "Doe");
+
+if (bookingsToCheckin.Success)
+{
+    foreach (var booking in bookingsToCheckout.Data)
+    {
+        Console.WriteLine($"Id de la réservation : {booking.Id}");
+        Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");
+        Console.WriteLine($"Statut de la réservation : {booking.Status}\n");
+    }
+}
+else
+{
+    Console.WriteLine(bookingsToCheckin.ErrorMessage);
+}
+```
+
+This method is necessary to obtain all the data before any check-out. The user must be logged with the correct role.
 
 ## Features
 
