@@ -37,8 +37,9 @@ public class AuthServiceTests
             "test@test.com",
             "password");
 
-        Assert.That(result, Is.Not.Null);
-        Assert.That(result!.AccessToken, Is.EqualTo("fake-jwt-token"));
+        Assert.That(result.Success, Is.True);
+        Assert.That(result.Data, Is.Not.Null);
+        Assert.That(result.Data.AccessToken, Is.EqualTo("fake-jwt-token"));
     }
 
     [Test]

@@ -33,7 +33,14 @@ var auth = await client.Auth.Login(
     "StrongPassword123!"
 );
 
-Console.WriteLine(auth?.AccessToken);
+if (auth.Success)
+        {
+            Console.WriteLine(auth.Data.UserId);
+        } 
+        else
+        {
+            Console.WriteLine(auth.ErrorMessage);
+        }
 ```
 
 On successful authentication, the JWT access token is automatically stored and added to all subsequent requests.

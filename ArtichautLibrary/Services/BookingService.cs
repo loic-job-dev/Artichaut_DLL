@@ -21,7 +21,7 @@ public class BookingService: IBookingService
     /// <param name="childrenNumber"> Number of children. </param>
     /// <param name="roomType"> Room type code. </param>
     /// <returns>
-    /// The created booking if successful; otherwise null.
+    /// The created booking if successful; the error message if not.
     /// </returns>
     public async Task<ApiResult<BookingResponse>> CreateBooking(DateOnly startBookedDate,
         DateOnly endBookedDate,

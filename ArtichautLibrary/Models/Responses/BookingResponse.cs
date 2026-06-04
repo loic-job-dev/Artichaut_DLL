@@ -8,6 +8,5 @@ public record BookingResponse(
     int AdultNumber,
     int ChildrenNumber,
     int RoomUnitPrice,
-    string Status,
-    string Message
+    string Status
     );

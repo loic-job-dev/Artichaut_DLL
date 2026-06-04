@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
@@ -25,14 +26,11 @@ public class AuthService: IAuthService
     /// <param name="email"> Email address used to authenticate the user. </param>
     /// <param name="password"> Password associated with the user's account. </param>
     /// <returns>
-    /// An <see cref="AuthResponse"/> containing the authenticated user's
+    /// If successfully, an <see cref="AuthResponse"/> containing the authenticated user's
     /// information and access token if the authentication succeeds;
-    /// otherwise <c>null</c>.
+    /// otherwise the error message sent by the API.
     /// </returns>
-    /// <exception cref="HttpRequestException">
-    /// Thrown when the API returns a non-success status code.
-    /// </exception>
-    public async Task<AuthResponse?> Login(string email, string password)
+    public async Task<ApiResult<AuthResponse>> Login(string email, string password)
     {
         var request = new LoginRequest(email, password);
 
@@ -41,25 +39,55 @@ public class AuthService: IAuthService
             request
         );
 
-        response.EnsureSuccessStatusCode();
-
-        AuthResponse? auth = await response.Content
-            .ReadFromJsonAsync<AuthResponse>();
-        
-        //Definition of the bearer token by default in headers
-        if (auth?.AccessToken != null)
+        switch (response.StatusCode)
         {
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue(
-                    "Bearer",
-                    auth.AccessToken
-                );
+            case HttpStatusCode.OK:
+            case HttpStatusCode.Created:
+            {
+                AuthResponse? auth = await response.Content
+                    .ReadFromJsonAsync<AuthResponse>();
+                
+                //Definition of the bearer token by default in headers
+                if (auth?.AccessToken != null)
+                {
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue(
+                            "Bearer",
+                            auth.AccessToken
+                        );
             
-            //recording the token, see later IMemoryCache
-            AccessToken = auth.AccessToken;
+                    //recording the token, see later IMemoryCache
+                    AccessToken = auth.AccessToken;
+                }
+                
+                return new ApiResult<AuthResponse>(
+                    true,
+                    auth,
+                    null
+                );
+            }
+
+            case HttpStatusCode.Unauthorized:
+            case HttpStatusCode.Conflict:
+            case HttpStatusCode.Forbidden:
+            {
+                var message =  await response.Content.ReadAsStringAsync();
+                return new ApiResult<AuthResponse>(
+                    false,
+                    null,
+                    message
+                );
+            }
+
+            default:
+            {
+                return new ApiResult<AuthResponse>(
+                    false,
+                    null,
+                    "Erreur de connexion à l'API"
+                );
+            }
         }
-        
-        return auth;
     }
     
     /// <summary>
@@ -99,14 +127,11 @@ public class AuthService: IAuthService
     /// <param name="zipCode"> Postal or ZIP code. </param>
     /// <param name="city"> City of residence. </param>
     /// <returns>
-    /// An <see cref="AuthResponse"/> containing the authenticated user's
+    /// If successfully, an <see cref="AuthResponse"/> containing the authenticated user's
     /// information and access token if the registration succeeds;
-    /// otherwise <c>null</c>.
+    /// otherwise the error message sent by the API.
     /// </returns>
-    /// <exception cref="HttpRequestException">
-    /// Thrown when the API returns a non-success status code.
-    /// </exception>
-    public async Task<AuthResponse?> SignUp(
+    public async Task<ApiResult<AuthResponse>> SignUp(
         string email,
         string password,
         string firstName,
@@ -139,24 +164,54 @@ public class AuthService: IAuthService
             request
         );
 
-        response.EnsureSuccessStatusCode();
-
-        AuthResponse? auth = await response.Content
-            .ReadFromJsonAsync<AuthResponse>();
-        
-        //Definition of the bearer token by default in headers
-        if (auth?.AccessToken != null)
+        switch (response.StatusCode)
         {
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue(
-                    "Bearer",
-                    auth.AccessToken
-                );
+            case HttpStatusCode.OK:
+            case HttpStatusCode.Created:
+            {
+                AuthResponse? auth = await response.Content
+                    .ReadFromJsonAsync<AuthResponse>();
+                
+                //Definition of the bearer token by default in headers
+                if (auth?.AccessToken != null)
+                {
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue(
+                            "Bearer",
+                            auth.AccessToken
+                        );
             
-            //recording the token, see later IMemoryCache
-            AccessToken = auth.AccessToken;
+                    //recording the token, see later IMemoryCache
+                    AccessToken = auth.AccessToken;
+                }
+                
+                return new ApiResult<AuthResponse>(
+                    true,
+                    auth,
+                    null
+                );
+            }
+
+            case HttpStatusCode.Unauthorized:
+            case HttpStatusCode.Conflict:
+            case HttpStatusCode.Forbidden:
+            {
+                var message =  await response.Content.ReadAsStringAsync();
+                return new ApiResult<AuthResponse>(
+                    false,
+                    null,
+                    message
+                );
+            }
+
+            default:
+            {
+                return new ApiResult<AuthResponse>(
+                    false,
+                    null,
+                    "Erreur de connexion à l'API"
+                );
+            }
         }
-        
-        return auth;
     }
 }

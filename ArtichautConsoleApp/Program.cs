@@ -24,40 +24,49 @@ class Program
             "RaitournelleDeGalles"
         );
 
-        string accessToken = auth.AccessToken;
         
-        Console.WriteLine(accessToken);
 
-        foreach (var role in auth.Roles)
+        if (auth.Success)
         {
-            Console.WriteLine(role);
+            Console.WriteLine(auth.Data.UserId);
+        } 
+        else
+        {
+            Console.WriteLine(auth.ErrorMessage);
         }
         
         client.Auth.Logout();
         
-        // var authClient = await client.Auth.SignUp(
+         var authClient = await client.Auth.SignUp(
+             "john.doe@test.com",
+             "Password123!",
+             "John",
+             "Doe",
+             "0612345678",
+             "johndoe",
+             12,
+             "Rue",
+             "de la Paix",
+             null,
+             "75001",
+             "Paris"
+         );
+        
+        // var authClient = await client.Auth.Login(
         //     "john.doe@test.com",
-        //     "Password123!",
-        //     "John",
-        //     "Doe",
-        //     "0612345678",
-        //     "johndoe",
-        //     12,
-        //     "Rue",
-        //     "de la Paix",
-        //     null,
-        //     "75001",
-        //     "Paris"
+        //     "Password123!"
         // );
-        
-        var authClient = await client.Auth.Login(
-            "john.doe@test.com",
-            "Password123!"
-        );
-        
-        foreach (var role in authClient.Roles)
+
+        if (authClient.Success)
         {
-            Console.WriteLine(role);
+            foreach (var role in authClient.Data.Roles)
+            {
+                Console.WriteLine(role);
+            }
+        }
+        else
+        {
+            Console.WriteLine(authClient.ErrorMessage);
         }
 
         var result = await client.Booking.CreateBooking(
