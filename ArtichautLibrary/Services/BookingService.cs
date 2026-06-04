@@ -140,4 +140,61 @@ public class BookingService: IBookingService
             }
         }
     }
+
+    /// <summary>
+    /// Retrieve the list of bookings for a given client with a BOOKED status.
+    /// </summary>
+    /// <param name="firstName"> The client's first name. </param>
+    /// <param name="lastName"> The client's last name. </param>
+    /// <returns>
+    /// An <see cref="ApiResult{T}"/> containing the list of
+    /// <see cref="BookingResponse"/> available for a check-in when successful; otherwise
+    /// an error message.
+    /// </returns>
+    public async Task<ApiResult<List<BookingResponse>>> GetBookingsByClient(
+        string firstName,
+        string lastName
+    )
+    {
+        var url = $"/bookings/bookingToCheckin?firstName={firstName}&lastName={lastName}";
+
+        var response = await _httpClient.GetAsync(url);
+
+        switch (response.StatusCode)
+        {
+            case HttpStatusCode.OK:
+            {
+                var bookings = await response.Content
+                    .ReadFromJsonAsync<List<BookingResponse>>();
+
+                return new ApiResult<List<BookingResponse>>(
+                    true,
+                    bookings,
+                    null
+                );
+            }
+
+            case HttpStatusCode.Unauthorized:
+            case HttpStatusCode.Forbidden:
+            case HttpStatusCode.NotFound:
+            {
+                var message = await response.Content.ReadAsStringAsync();
+
+                return new ApiResult<List<BookingResponse>>(
+                    false,
+                    null,
+                    message
+                );
+            }
+
+            default:
+            {
+                return new ApiResult<List<BookingResponse>>(
+                    false,
+                    null,
+                    "Erreur de connexion à l'API"
+                );
+            }
+        }
+    }
 }

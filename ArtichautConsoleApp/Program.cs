@@ -51,27 +51,27 @@ class Program
             Console.WriteLine(authClient.ErrorMessage);
         }
 
-        var result = await client.Booking.CreateBooking(
-        DateOnly.FromDateTime(DateTime.Now),
-        DateOnly.FromDateTime(DateTime.Now.AddDays(2)),
-        2, 
-        0, 
-        "STD");
-        
-        //Test for checkin
-        string status = result.Data.Status;
-        DateOnly startBookedDate = result.Data.StartBookedDate;
-        var bookingIg = result.Data.Id.ToString();
-        var roomTypeId = result.Data.RoomTypes.First().Id.ToString();
-        
-        if (result.Success)
-        {
-            
-        }
-        else
-        {
-            Console.WriteLine(result.ErrorMessage);
-        }
+        // var result = await client.Booking.CreateBooking(
+        // DateOnly.FromDateTime(DateTime.Now),
+        // DateOnly.FromDateTime(DateTime.Now.AddDays(2)),
+        // 2, 
+        // 0, 
+        // "STD");
+        //
+        // //Test for checkin
+        // string status = result.Data.Status;
+        // DateOnly startBookedDate = result.Data.StartBookedDate;
+        // var bookingIg = result.Data.Id.ToString();
+        // var roomTypeId = result.Data.RoomTypes.First().Id.ToString();
+        //
+        // if (result.Success)
+        // {
+        //     
+        // }
+        // else
+        // {
+        //     Console.WriteLine(result.ErrorMessage);
+        // }
         
         client.Auth.Logout();
         
@@ -89,19 +89,35 @@ class Program
             Console.WriteLine(auth.ErrorMessage);
         }
         
-        var checkin = await client.Booking.Checkin(
-            status,
-            startBookedDate,
-            roomTypeId,
-            bookingIg);
-        
-        if (checkin.Success)
+        // var checkin = await client.Booking.Checkin(
+        //     status,
+        //     startBookedDate,
+        //     roomTypeId,
+        //     bookingIg);
+        //
+        // if (checkin.Success)
+        // {
+        //     Console.WriteLine(checkin.Data);
+        // }
+        // else
+        // {
+        //     Console.WriteLine(checkin.ErrorMessage);
+        // }
+
+        var bookingsToCheckin = await client.Booking.GetBookingsByClient("John", "Doe");
+
+        if (bookingsToCheckin.Success)
         {
-            Console.WriteLine(checkin.Data);
+            foreach (var booking in bookingsToCheckin.Data)
+            {
+                Console.WriteLine($"Id de la réservation : {booking.Id}");
+                Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");
+                Console.WriteLine($"Statut de la réservation : {booking.Status}\n");
+            }
         }
         else
         {
-            Console.WriteLine(checkin.ErrorMessage);
+            Console.WriteLine(bookingsToCheckin.ErrorMessage);
         }
     }
 }

@@ -42,4 +42,18 @@ public interface IBookingService
         string roomTypeId,
         string bookingId
         );
+
+    /// <summary>
+    /// Retrieve the list of bookings for a given client with a BOOKED status.
+    /// </summary>
+    /// <param name="firstName"> The client's first name. </param>
+    /// <param name="lastName"> The client's last name. </param>
+    /// <returns>
+    /// An <see cref="ApiResult{T}"/> containing the list of
+    /// <see cref="BookingResponse"/> available for a check-in.
+    /// </returns>
+    Task<ApiResult<List<BookingResponse>>> GetBookingsByClient(
+        string firstName,
+        string lastName
+        );
 }
