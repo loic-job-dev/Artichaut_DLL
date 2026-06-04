@@ -49,7 +49,7 @@ This removes the stored access token and clears the Authorization header.
 ## Create a Booking
 
 ```csharp
-var booking = await client.Booking.CreateBooking(
+var result = await client.Booking.CreateBooking(
     DateOnly.FromDateTime(DateTime.Today),
     DateOnly.FromDateTime(DateTime.Today.AddDays(2)),
     2,
@@ -57,8 +57,17 @@ var booking = await client.Booking.CreateBooking(
     "STE"
 );
 
-Console.WriteLine(booking?.Id);
+if (result.Success)
+{
+    Console.WriteLine(result.Data);
+}
+else
+{
+    Console.WriteLine(result.ErrorMessage);
+}
 ```
+
+This allows to display the error messages sent by the API in case of 409 status code by exemple
 
 ## Features
 

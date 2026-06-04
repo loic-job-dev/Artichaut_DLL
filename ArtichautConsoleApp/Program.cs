@@ -60,13 +60,20 @@ class Program
             Console.WriteLine(role);
         }
 
-        var booking = await client.Booking.CreateBooking(
+        var result = await client.Booking.CreateBooking(
         DateOnly.FromDateTime(DateTime.Now),
         DateOnly.FromDateTime(DateTime.Now.AddDays(2)),
         2, 
         0, 
         "STE");
         
-        Console.WriteLine(booking);
+        if (result.Success)
+        {
+            Console.WriteLine(result.Data);
+        }
+        else
+        {
+            Console.WriteLine(result.ErrorMessage);
+        }
     }
 }

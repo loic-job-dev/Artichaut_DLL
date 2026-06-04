@@ -1,3 +1,4 @@
+using System.Net;
 using ArtichautLibrary.Services;
 using TestArtichautDll.Helpers;
 
@@ -33,16 +34,17 @@ public class BookingServiceTests
     [Test]
     public async Task CreateBooking_Should_Return_BookingResponse()
     {
-        var booking = await _bookingService.CreateBooking(
+        var result = await _bookingService.CreateBooking(
             new DateOnly(2026, 6, 3),
             new DateOnly(2026, 6, 5),
             2,
             0,
             "STE");
 
-        Assert.That(booking, Is.Not.Null);
+        Assert.That(result.Success, Is.True);
+        Assert.That(result.Data, Is.Not.Null);
         Assert.That(
-            booking!.roomUnitPrice,
+            result.Data!.RoomUnitPrice,
             Is.EqualTo(280));
     }
 
@@ -79,7 +81,7 @@ public class BookingServiceTests
     [Test]
     public async Task CreateBooking_Should_Return_Correct_Status()
     {
-        var booking = await _bookingService.CreateBooking(
+        var result = await _bookingService.CreateBooking(
             new DateOnly(2026, 6, 3),
             new DateOnly(2026, 6, 5),
             2,
@@ -87,7 +89,27 @@ public class BookingServiceTests
             "STE");
 
         Assert.That(
-            booking!.status,
+            result.Data!.Status,
             Is.EqualTo("BOOKED"));
+    }
+    
+    [Test]
+    public async Task CreateBooking_Should_Return_Error_When_Conflict()
+    {
+        _handler.StatusCode = HttpStatusCode.Conflict;
+        _handler.ResponseContent = "Room already booked";
+
+        var result = await _bookingService.CreateBooking(
+            new DateOnly(2026, 6, 3),
+            new DateOnly(2026, 6, 5),
+            2,
+            0,
+            "STE");
+
+        Assert.That(result.Success, Is.False);
+        Assert.That(result.Data, Is.Null);
+        Assert.That(
+            result.ErrorMessage,
+            Is.EqualTo("Room already booked"));
     }
 }

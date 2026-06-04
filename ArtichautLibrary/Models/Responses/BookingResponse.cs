@@ -1,12 +1,13 @@
 namespace ArtichautLibrary;
 
 public record BookingResponse(
-    string id,
-    DateOnly validationDate,
-    DateOnly startBookedDate,
-    DateOnly endBookedDate,
-    int adultNumber,
-    int childrenNumber,
-    int roomUnitPrice,
-    string status
+    string Id,
+    DateOnly ValidationDate,
+    DateOnly StartBookedDate,
+    DateOnly EndBookedDate,
+    int AdultNumber,
+    int ChildrenNumber,
+    int RoomUnitPrice,
+    string Status,
+    string Message
     );

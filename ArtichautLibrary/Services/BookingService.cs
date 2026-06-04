@@ -23,7 +23,7 @@ public class BookingService: IBookingService
     /// <returns>
     /// The created booking if successful; otherwise null.
     /// </returns>
-    public async Task<BookingResponse?> CreateBooking(DateOnly startBookedDate,
+    public async Task<ApiResult<BookingResponse>> CreateBooking(DateOnly startBookedDate,
         DateOnly endBookedDate,
         int adultNumber,
         int childrenNumber,
@@ -41,34 +41,35 @@ public class BookingService: IBookingService
             case HttpStatusCode.OK:
             case HttpStatusCode.Created:
             {
-                return await response.Content
+                BookingResponse? booking = await response.Content
                     .ReadFromJsonAsync<BookingResponse>();
+                
+                return new ApiResult<BookingResponse>(
+                    true,
+                    booking,
+                    null
+                );
             }
 
             case HttpStatusCode.Conflict:
-            {
-                var message =  await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Conflit de réservation : {message}");
-                return null;
-            }
-
             case HttpStatusCode.Unauthorized:
-            {
-                Console.WriteLine("Non authentifié");
-                return null;
-            }
-
             case HttpStatusCode.Forbidden:
             {
-                Console.WriteLine("Accès interdit");
-                return null;
+                var message =  await response.Content.ReadAsStringAsync();
+                return new ApiResult<BookingResponse>(
+                    false,
+                    null,
+                    message
+                );
             }
 
             default:
             {
-                Console.WriteLine(
-                    $"Erreur HTTP {(int)response.StatusCode}");
-                return null;
+                return new ApiResult<BookingResponse>(
+                    false,
+                    null,
+                    "Erreur de connexion à l'API"
+                );
             }
         }
     }

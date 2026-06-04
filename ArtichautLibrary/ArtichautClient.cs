@@ -6,8 +6,8 @@ public class ArtichautClient
 {
     private readonly HttpClient _httpClient;
     
-    public AuthService Auth { get; }
-    public BookingService Booking { get; }
+    public IAuthService Auth { get; }
+    public IBookingService Booking { get; }
 
     public ArtichautClient(HttpClient httpClient)
     {
