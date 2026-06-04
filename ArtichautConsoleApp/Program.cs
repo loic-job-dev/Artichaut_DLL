@@ -76,19 +76,19 @@ class Program
         
         client.Auth.Logout();
         
-        var auth = await client.Auth.Login(
-            "rlame@artichaut.fr",
-            "RaitournelleDeGalles"
-        );
-        
-        if (auth.Success)
-        {
-            Console.WriteLine(auth.Data.UserId);
-        } 
-        else
-        {
-            Console.WriteLine(auth.ErrorMessage);
-        }
+        // var auth = await client.Auth.Login(
+        //     "rlame@artichaut.fr",
+        //     "RaitournelleDeGalles"
+        // );
+        //
+        // if (auth.Success)
+        // {
+        //     Console.WriteLine(auth.Data.UserId);
+        // } 
+        // else
+        // {
+        //     Console.WriteLine(auth.ErrorMessage);
+        // }
         
         // var checkin = await client.Booking.Checkin(
         //     status,
@@ -105,52 +105,52 @@ class Program
         //     Console.WriteLine(checkin.ErrorMessage);
         // }
 
-        var bookingsToCheckin = await client.Booking.GetBookingsToCheckinByClient("John", "Doe");
-
-        if (bookingsToCheckin.Success)
-        {
-            foreach (var booking in bookingsToCheckin.Data)
-            {
-                Console.WriteLine($"Id de la réservation : {booking.Id}");
-                Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");
-                Console.WriteLine($"Statut de la réservation : {booking.Status}\n");
-            }
-        }
-        else
-        {
-            Console.WriteLine(bookingsToCheckin.ErrorMessage);
-        }
-        
-        
-        var bookingsToCheckout = await client.Booking.GetBookingsToCheckoutByClient("John", "Doe");
-
-        string bookingIdToCheckout = "";
-        
-        if (bookingsToCheckout.Success)
-        {
-            bookingIdToCheckout = bookingsToCheckout.Data[0].Id.ToString();
-            
-            foreach (var booking in bookingsToCheckout.Data)
-            {
-                Console.WriteLine($"Id de la réservation : {booking.Id}");
-                Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");
-                Console.WriteLine($"Statut de la réservation : {booking.Status}\n");
-            }
-        }
-        else
-        {
-            Console.WriteLine(bookingsToCheckin.ErrorMessage);
-        }
-        
-        var bookingCheckoutDone = await client.Booking.Checkout(bookingIdToCheckout);
-
-        if (bookingCheckoutDone.Success)
-        {
-            Console.WriteLine($"Prix final de la réservation : {bookingCheckoutDone.Data.FinalPrice}");
-        }
-        else
-        {
-            Console.WriteLine(bookingCheckoutDone.ErrorMessage);
-        }
+        // var bookingsToCheckin = await client.Booking.GetBookingsToCheckinByClient("John", "Doe");
+        //
+        // if (bookingsToCheckin.Success)
+        // {
+        //     foreach (var booking in bookingsToCheckin.Data)
+        //     {
+        //         Console.WriteLine($"Id de la réservation : {booking.Id}");
+        //         Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");
+        //         Console.WriteLine($"Statut de la réservation : {booking.Status}\n");
+        //     }
+        // }
+        // else
+        // {
+        //     Console.WriteLine(bookingsToCheckin.ErrorMessage);
+        // }
+        //
+        //
+        // var bookingsToCheckout = await client.Booking.GetBookingsToCheckoutByClient("John", "Doe");
+        //
+        // string bookingIdToCheckout = "";
+        //
+        // if (bookingsToCheckout.Success)
+        // {
+        //     bookingIdToCheckout = bookingsToCheckout.Data[0].Id.ToString();
+        //     
+        //     foreach (var booking in bookingsToCheckout.Data)
+        //     {
+        //         Console.WriteLine($"Id de la réservation : {booking.Id}");
+        //         Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");
+        //         Console.WriteLine($"Statut de la réservation : {booking.Status}\n");
+        //     }
+        // }
+        // else
+        // {
+        //     Console.WriteLine(bookingsToCheckin.ErrorMessage);
+        // }
+        //
+        // var bookingCheckoutDone = await client.Booking.Checkout(bookingIdToCheckout);
+        //
+        // if (bookingCheckoutDone.Success)
+        // {
+        //     Console.WriteLine($"Prix final de la réservation : {bookingCheckoutDone.Data.FinalPrice}");
+        // }
+        // else
+        // {
+        //     Console.WriteLine(bookingCheckoutDone.ErrorMessage);
+        // }
     }
 }

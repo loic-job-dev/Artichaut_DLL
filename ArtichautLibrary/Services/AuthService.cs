@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text.RegularExpressions;
 
 namespace ArtichautLibrary.Services;
 
@@ -9,6 +10,11 @@ public class AuthService: IAuthService
     private readonly HttpClient _httpClient;
 
     public string? AccessToken { get; private set; }
+    
+    private static readonly Regex EmailRegex =
+        new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+            RegexOptions.Compiled);
+    
     public AuthService(HttpClient httpClient)
     {
         _httpClient = httpClient;
@@ -30,8 +36,18 @@ public class AuthService: IAuthService
     /// information and access token if the authentication succeeds;
     /// otherwise the error message sent by the API.
     /// </returns>
+    /// <exception cref="ArgumentException">
+    /// Thrown when <paramref name="email"/> is not a valid email address.
+    /// </exception>
     public async Task<ApiResult<AuthResponse>> Login(string email, string password)
     {
+        if (!EmailRegex.IsMatch(email))
+        {
+            throw new ArgumentException(
+                "Format d'email incorrect !",
+                nameof(email));
+        }
+        
         var request = new LoginRequest(email, password);
 
         var response = await _httpClient.PostAsJsonAsync(
@@ -131,6 +147,9 @@ public class AuthService: IAuthService
     /// information and access token if the registration succeeds;
     /// otherwise the error message sent by the API.
     /// </returns>
+    /// <exception cref="ArgumentException">
+    /// Thrown when <paramref name="email"/> is not a valid email address.
+    /// </exception>
     public async Task<ApiResult<AuthResponse>> SignUp(
         string email,
         string password,
@@ -146,6 +165,13 @@ public class AuthService: IAuthService
         string city
         )
     {
+        if (!EmailRegex.IsMatch(email))
+        {
+            throw new ArgumentException(
+                "Format d'email incorrect !",
+                nameof(email));
+        }
+        
         var request = new SignUpRequest(email, 
             password, 
             firstName, 
