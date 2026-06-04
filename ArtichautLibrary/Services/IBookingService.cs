@@ -70,4 +70,13 @@ public interface IBookingService
         string firstName,
         string lastName
     );
+
+    /// <summary>
+    /// Performs check-out for an existing booking.
+    /// </summary>
+    /// <param name="bookingId"></param>
+    /// <returns></returns>
+    Task<ApiResult<BookingResponse>> Checkout(
+        string bookingId
+    );
 }

@@ -120,11 +120,51 @@ else
 
 This method is necessary to obtain all the data before any check-out. The user must be logged with the correct role.
 
+## Check-in
+
+```csharp
+var checkin = await client.Booking.Checkin(
+             status,
+             startBookedDate,
+             roomTypeId,
+             bookingIg
+             );
+        
+if (checkin.Success)
+{
+    Console.WriteLine(checkin.Data);
+}
+else
+{
+    Console.WriteLine(checkin.ErrorMessage);
+}
+```
+
+With the values given by the GetBookingsToCheckinByClient method, it is possible to perform a check-in.
+
+## Check-out
+
+```csharp
+var bookingCheckoutDone = await client.Booking.Checkout(bookingIdToCheckout);
+
+if (bookingCheckoutDone.Success)
+{
+    Console.WriteLine($"Prix final de la réservation : {bookingCheckoutDone.Data.FinalPrice}");
+}
+else
+{
+    Console.WriteLine(bookingCheckoutDone.ErrorMessage);
+}
+```
+
+With the value given by the GetBookingsToCheckoutByClient method, it is possible to perform a check-out .
+
 ## Features
 
 * User authentication
 * User registration
 * Booking creation
+* Performing Check-in and check-out
 * Automatic JWT Bearer token management
 * Dependency Injection support
 * Strongly-typed request and response models

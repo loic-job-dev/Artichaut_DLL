@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using ArtichautLibrary;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -123,8 +124,12 @@ class Program
         
         var bookingsToCheckout = await client.Booking.GetBookingsToCheckoutByClient("John", "Doe");
 
-        if (bookingsToCheckin.Success)
+        string bookingIdToCheckout = "";
+        
+        if (bookingsToCheckout.Success)
         {
+            bookingIdToCheckout = bookingsToCheckout.Data[0].Id.ToString();
+            
             foreach (var booking in bookingsToCheckout.Data)
             {
                 Console.WriteLine($"Id de la réservation : {booking.Id}");
@@ -135,6 +140,17 @@ class Program
         else
         {
             Console.WriteLine(bookingsToCheckin.ErrorMessage);
+        }
+        
+        var bookingCheckoutDone = await client.Booking.Checkout(bookingIdToCheckout);
+
+        if (bookingCheckoutDone.Success)
+        {
+            Console.WriteLine($"Prix final de la réservation : {bookingCheckoutDone.Data.FinalPrice}");
+        }
+        else
+        {
+            Console.WriteLine(bookingCheckoutDone.ErrorMessage);
         }
     }
 }

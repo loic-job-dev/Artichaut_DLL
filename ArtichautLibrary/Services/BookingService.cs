@@ -254,4 +254,59 @@ public class BookingService: IBookingService
             }
         }
     }
+    
+    /// <summary>
+    /// Performs check-out for an existing booking.
+    /// </summary>
+    /// <param name="bookingId"></param>
+    /// <returns>
+    /// An <see cref="ApiResult{T}"/> containing the updated
+    /// <see cref="BookingResponse"/> when successful; otherwise
+    /// an error message.
+    /// </returns>
+    public async Task<ApiResult<BookingResponse>> Checkout(
+        string bookingId
+    )
+    {
+        var response = await _httpClient.PutAsync(
+            $"/bookings/{bookingId}/checkout", null
+        );
+        
+        switch (response.StatusCode)
+        {
+            case HttpStatusCode.OK:
+            case HttpStatusCode.Created:
+            {
+                BookingResponse? booking = await response.Content
+                    .ReadFromJsonAsync<BookingResponse>();
+                
+                return new ApiResult<BookingResponse>(
+                    true,
+                    booking,
+                    null
+                );
+            }
+
+            case HttpStatusCode.Conflict:
+            case HttpStatusCode.Unauthorized:
+            case HttpStatusCode.Forbidden:
+            {
+                var message =  await response.Content.ReadAsStringAsync();
+                return new ApiResult<BookingResponse>(
+                    false,
+                    null,
+                    message
+                );
+            }
+
+            default:
+            {
+                return new ApiResult<BookingResponse>(
+                    false,
+                    null,
+                    "Erreur de connexion à l'API"
+                );
+            }
+        }
+    }
 }
