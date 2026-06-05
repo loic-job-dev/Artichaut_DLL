@@ -179,13 +179,39 @@ else
 
 This method is necessary to obtain all the data before adding an option to a booking.
 
+## Add an option to a booking
+
+```csharp
+var optionIdToAdd = "";
+
+Console.WriteLine("Entrez l'Id de l'option à ajouter :");
+optionIdToAdd = Console.ReadLine();
+
+var bookingWithNewOption = await client.Option.AddOptionToBooking(
+    bookingIg,
+    optionIdToAdd,
+    DateOnly.FromDateTime(DateTime.Now),
+    DateOnly.FromDateTime(DateTime.Now));
+
+if (bookingWithNewOption.Success)
+{
+    Console.WriteLine(bookingWithNewOption.Data);
+}
+else
+{
+    Console.WriteLine(bookingWithNewOption.ErrorMessage);
+};
+```
+
+This method allows a user with the correct role to add an aoption to a booking.
+
 ## Features
 
 * User authentication
 * User registration
 * Booking creation
 * Performing Check-in and check-out
-* WIP : Adding an option to a booking
+* Adding an option to a booking
 * Automatic JWT Bearer token management
 * Dependency Injection support
 * Strongly-typed request and response models

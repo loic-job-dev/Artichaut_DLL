@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.RegularExpressions;
+using ArtichautLibrary.Helper;
 
 namespace ArtichautLibrary.Services;
 
@@ -55,55 +56,7 @@ public class AuthService: IAuthService
             request
         );
 
-        switch (response.StatusCode)
-        {
-            case HttpStatusCode.OK:
-            case HttpStatusCode.Created:
-            {
-                AuthResponse? auth = await response.Content
-                    .ReadFromJsonAsync<AuthResponse>();
-                
-                //Definition of the bearer token by default in headers
-                if (auth?.AccessToken != null)
-                {
-                    _httpClient.DefaultRequestHeaders.Authorization =
-                        new AuthenticationHeaderValue(
-                            "Bearer",
-                            auth.AccessToken
-                        );
-            
-                    //recording the token, see later IMemoryCache
-                    AccessToken = auth.AccessToken;
-                }
-                
-                return new ApiResult<AuthResponse>(
-                    true,
-                    auth,
-                    null
-                );
-            }
-
-            case HttpStatusCode.Unauthorized:
-            case HttpStatusCode.Conflict:
-            case HttpStatusCode.Forbidden:
-            {
-                var message =  await response.Content.ReadAsStringAsync();
-                return new ApiResult<AuthResponse>(
-                    false,
-                    null,
-                    message
-                );
-            }
-
-            default:
-            {
-                return new ApiResult<AuthResponse>(
-                    false,
-                    null,
-                    "Erreur de connexion à l'API"
-                );
-            }
-        }
+        return await HandlerResponseHelper.HandlerResponse<AuthResponse>(response);
     }
     
     /// <summary>
@@ -190,54 +143,6 @@ public class AuthService: IAuthService
             request
         );
 
-        switch (response.StatusCode)
-        {
-            case HttpStatusCode.OK:
-            case HttpStatusCode.Created:
-            {
-                AuthResponse? auth = await response.Content
-                    .ReadFromJsonAsync<AuthResponse>();
-                
-                //Definition of the bearer token by default in headers
-                if (auth?.AccessToken != null)
-                {
-                    _httpClient.DefaultRequestHeaders.Authorization =
-                        new AuthenticationHeaderValue(
-                            "Bearer",
-                            auth.AccessToken
-                        );
-            
-                    //recording the token, see later IMemoryCache
-                    AccessToken = auth.AccessToken;
-                }
-                
-                return new ApiResult<AuthResponse>(
-                    true,
-                    auth,
-                    null
-                );
-            }
-
-            case HttpStatusCode.Unauthorized:
-            case HttpStatusCode.Conflict:
-            case HttpStatusCode.Forbidden:
-            {
-                var message =  await response.Content.ReadAsStringAsync();
-                return new ApiResult<AuthResponse>(
-                    false,
-                    null,
-                    message
-                );
-            }
-
-            default:
-            {
-                return new ApiResult<AuthResponse>(
-                    false,
-                    null,
-                    "Erreur de connexion à l'API"
-                );
-            }
-        }
+        return await HandlerResponseHelper.HandlerResponse<AuthResponse>(response);
     }
 }

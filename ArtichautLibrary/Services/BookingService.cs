@@ -1,6 +1,7 @@
 using System.Diagnostics.Metrics;
 using System.Net;
 using System.Net.Http.Json;
+using ArtichautLibrary.Helper;
 
 namespace ArtichautLibrary.Services;
 
@@ -40,42 +41,7 @@ public class BookingService: IBookingService
             request
         );
         
-        switch (response.StatusCode)
-        {
-            case HttpStatusCode.OK:
-            case HttpStatusCode.Created:
-            {
-                BookingResponse? booking = await response.Content
-                    .ReadFromJsonAsync<BookingResponse>();
-                
-                return new ApiResult<BookingResponse>(
-                    true,
-                    booking,
-                    null
-                );
-            }
-
-            case HttpStatusCode.Conflict:
-            case HttpStatusCode.Unauthorized:
-            case HttpStatusCode.Forbidden:
-            {
-                var message =  await response.Content.ReadAsStringAsync();
-                return new ApiResult<BookingResponse>(
-                    false,
-                    null,
-                    message
-                );
-            }
-
-            default:
-            {
-                return new ApiResult<BookingResponse>(
-                    false,
-                    null,
-                    "Erreur de connexion à l'API"
-                );
-            }
-        }
+        return await HandlerResponseHelper.HandlerResponse<BookingResponse>(response);
     }
 
     /// <summary>
@@ -102,43 +68,8 @@ public class BookingService: IBookingService
             $"/bookings/{bookingId}/checkin",
             request
         );
-        
-        switch (response.StatusCode)
-        {
-            case HttpStatusCode.OK:
-            case HttpStatusCode.Created:
-            {
-                BookingResponse? booking = await response.Content
-                    .ReadFromJsonAsync<BookingResponse>();
-                
-                return new ApiResult<BookingResponse>(
-                    true,
-                    booking,
-                    null
-                );
-            }
 
-            case HttpStatusCode.Conflict:
-            case HttpStatusCode.Unauthorized:
-            case HttpStatusCode.Forbidden:
-            {
-                var message =  await response.Content.ReadAsStringAsync();
-                return new ApiResult<BookingResponse>(
-                    false,
-                    null,
-                    message
-                );
-            }
-
-            default:
-            {
-                return new ApiResult<BookingResponse>(
-                    false,
-                    null,
-                    "Erreur de connexion à l'API"
-                );
-            }
-        }
+        return await HandlerResponseHelper.HandlerResponse<BookingResponse>(response);
     }
 
     /// <summary>
@@ -160,42 +91,7 @@ public class BookingService: IBookingService
 
         var response = await _httpClient.GetAsync(url);
 
-        switch (response.StatusCode)
-        {
-            case HttpStatusCode.OK:
-            {
-                var bookings = await response.Content
-                    .ReadFromJsonAsync<List<BookingResponse>>();
-
-                return new ApiResult<List<BookingResponse>>(
-                    true,
-                    bookings,
-                    null
-                );
-            }
-
-            case HttpStatusCode.Unauthorized:
-            case HttpStatusCode.Forbidden:
-            case HttpStatusCode.NotFound:
-            {
-                var message = await response.Content.ReadAsStringAsync();
-
-                return new ApiResult<List<BookingResponse>>(
-                    false,
-                    null,
-                    message
-                );
-            }
-
-            default:
-            {
-                return new ApiResult<List<BookingResponse>>(
-                    false,
-                    null,
-                    "Erreur de connexion à l'API"
-                );
-            }
-        }
+        return await HandlerResponseHelper.HandlerResponse<List<BookingResponse>>(response);
     }
 
     /// <summary>
@@ -217,42 +113,7 @@ public class BookingService: IBookingService
 
         var response = await _httpClient.GetAsync(url);
 
-        switch (response.StatusCode)
-        {
-            case HttpStatusCode.OK:
-            {
-                var bookings = await response.Content
-                    .ReadFromJsonAsync<List<BookingResponse>>();
-
-                return new ApiResult<List<BookingResponse>>(
-                    true,
-                    bookings,
-                    null
-                );
-            }
-
-            case HttpStatusCode.Unauthorized:
-            case HttpStatusCode.Forbidden:
-            case HttpStatusCode.NotFound:
-            {
-                var message = await response.Content.ReadAsStringAsync();
-
-                return new ApiResult<List<BookingResponse>>(
-                    false,
-                    null,
-                    message
-                );
-            }
-
-            default:
-            {
-                return new ApiResult<List<BookingResponse>>(
-                    false,
-                    null,
-                    "Erreur de connexion à l'API"
-                );
-            }
-        }
+        return await HandlerResponseHelper.HandlerResponse<List<BookingResponse>>(response);
     }
     
     /// <summary>
@@ -272,41 +133,6 @@ public class BookingService: IBookingService
             $"/bookings/{bookingId}/checkout", null
         );
         
-        switch (response.StatusCode)
-        {
-            case HttpStatusCode.OK:
-            case HttpStatusCode.Created:
-            {
-                BookingResponse? booking = await response.Content
-                    .ReadFromJsonAsync<BookingResponse>();
-                
-                return new ApiResult<BookingResponse>(
-                    true,
-                    booking,
-                    null
-                );
-            }
-
-            case HttpStatusCode.Conflict:
-            case HttpStatusCode.Unauthorized:
-            case HttpStatusCode.Forbidden:
-            {
-                var message =  await response.Content.ReadAsStringAsync();
-                return new ApiResult<BookingResponse>(
-                    false,
-                    null,
-                    message
-                );
-            }
-
-            default:
-            {
-                return new ApiResult<BookingResponse>(
-                    false,
-                    null,
-                    "Erreur de connexion à l'API"
-                );
-            }
-        }
+        return await HandlerResponseHelper.HandlerResponse<BookingResponse>(response);
     }
 }
