@@ -14,6 +14,7 @@ namespace ArtichautLibrary;
 /// <param name="RoomUnitPrice"> Price per room unit. </param>
 /// <param name="Status"> Current booking status. </param>
 /// <param name="RoomTypes"> Collection of room types associated with the booking. </param>
+/// <param name="Rooms"> Collection of rooms associated with the booking. </param>
 /// <param name="FinalPrice"> Final price given by the API. </param>
 public record BookingResponse(
     Guid Id,
@@ -27,5 +28,6 @@ public record BookingResponse(
     int RoomUnitPrice,
     string Status,
     List<RoomTypeResponse> RoomTypes,
+    List<RoomResponse> Rooms,
     int? FinalPrice
     );
