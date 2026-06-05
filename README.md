@@ -159,12 +159,33 @@ else
 
 With the value given by the GetBookingsToCheckoutByClient method, it is possible to perform a check-out .
 
+## Retrieves ther list of available options
+
+```csharp
+var options = await client.Option.GetOptions();
+
+if (options.Success)
+{
+    foreach (var option in options.Data)
+    {
+        Console.WriteLine($"{option.Name} : {option.Description}\nId de l'option : {option.Id}\n");
+    }
+}
+else
+{
+    Console.WriteLine(options.ErrorMessage);
+}
+```
+
+This method is necessary to obtain all the data before adding an option to a booking.
+
 ## Features
 
 * User authentication
 * User registration
 * Booking creation
 * Performing Check-in and check-out
+* WIP : Adding an option to a booking
 * Automatic JWT Bearer token management
 * Dependency Injection support
 * Strongly-typed request and response models

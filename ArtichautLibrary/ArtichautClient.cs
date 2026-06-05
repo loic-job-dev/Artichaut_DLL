@@ -21,11 +21,17 @@ public class ArtichautClient
     /// Provides access to booking operations.
     /// </summary>
     public IBookingService Booking { get; }
+    
+    /// <summary>
+    /// Provides access to options operations.
+    /// </summary>
+    public IOptionService Option { get; }
 
     public ArtichautClient(HttpClient httpClient)
     {
         _httpClient = httpClient;
         Auth = new AuthService(httpClient);
         Booking = new BookingService(httpClient);
+        Option = new OptionService(httpClient);
     }
 }

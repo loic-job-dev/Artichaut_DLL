@@ -152,5 +152,19 @@ class Program
         // {
         //     Console.WriteLine(bookingCheckoutDone.ErrorMessage);
         // }
+
+        var options = await client.Option.GetOptions();
+
+        if (options.Success)
+        {
+            foreach (var option in options.Data)
+            {
+                Console.WriteLine($"{option.Name} : {option.Description}\nId de l'option : {option.Id}\n");
+            }
+        }
+        else
+        {
+            Console.WriteLine(options.ErrorMessage);
+        }
     }
 }
