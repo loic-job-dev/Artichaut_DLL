@@ -10,7 +10,6 @@ namespace ArtichautLibrary;
 /// </remarks>
 public class ArtichautClient
 {
-    private readonly HttpClient _httpClient;
     
     /// <summary>
     /// Provides access to authentication operations.
@@ -27,11 +26,13 @@ public class ArtichautClient
     /// </summary>
     public IOptionService Option { get; }
 
-    public ArtichautClient(HttpClient httpClient)
+    public ArtichautClient(HttpClient httpClient, 
+        IAuthService auth, 
+        IBookingService booking, 
+        IOptionService option)
     {
-        _httpClient = httpClient;
-        Auth = new AuthService(httpClient);
-        Booking = new BookingService(httpClient);
-        Option = new OptionService(httpClient);
+        Auth = auth;
+        Booking = booking;
+        Option = option;
     }
 }

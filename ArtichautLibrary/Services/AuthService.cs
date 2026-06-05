@@ -3,12 +3,14 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.RegularExpressions;
 using ArtichautLibrary.Helper;
+using ArtichautLibrary.Providers;
 
 namespace ArtichautLibrary.Services;
 
 public class AuthService: IAuthService
 {
     private readonly HttpClient _httpClient;
+    private readonly ITokenProvider _tokenProvider;
 
     public string? AccessToken { get; private set; }
     
@@ -16,9 +18,10 @@ public class AuthService: IAuthService
         new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$",
             RegexOptions.Compiled);
     
-    public AuthService(HttpClient httpClient)
+    public AuthService(HttpClient httpClient, ITokenProvider tokenProvider)
     {
         _httpClient = httpClient;
+        _tokenProvider = tokenProvider;
     }
 
     /// <summary>
@@ -55,8 +58,16 @@ public class AuthService: IAuthService
             "/auth/login",
             request
         );
+        
+        var result = await HandlerResponseHelper.HandlerResponse<AuthResponse>(response);
 
-        return await HandlerResponseHelper.HandlerResponse<AuthResponse>(response);
+        // 🔥 token uniquement ici (logique métier)
+        if (result.Success && result.Data?.AccessToken != null)
+        {
+            _tokenProvider.SetToken(result.Data.AccessToken);
+        }
+
+        return result;
     }
     
     /// <summary>
@@ -70,8 +81,7 @@ public class AuthService: IAuthService
     /// </remarks>
     public void  Logout()
     {
-        _httpClient.DefaultRequestHeaders.Authorization = null;
-        AccessToken = null;
+        _tokenProvider.SetToken(null);
     }
 
     /// <summary>
@@ -142,6 +152,14 @@ public class AuthService: IAuthService
             "/auth/signup",
             request
         );
+        
+        var auth = await response.Content
+            .ReadFromJsonAsync<AuthResponse>();
+
+        if (auth?.AccessToken != null)
+        {
+            _tokenProvider.SetToken(auth.AccessToken);
+        }
 
         return await HandlerResponseHelper.HandlerResponse<AuthResponse>(response);
     }

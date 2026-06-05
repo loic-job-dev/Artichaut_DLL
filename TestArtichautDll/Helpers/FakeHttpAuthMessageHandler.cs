@@ -16,7 +16,7 @@ public class FakeHttpAuthMessageHandler : HttpMessageHandler
         var json = """
                    {
                        "accessToken":"fake-jwt-token",
-                       "userId":"randomUUID"
+                       "userId":"16919cfb-49fe-11f1-834b-cc641aee987d"
                    }
                    """;
 

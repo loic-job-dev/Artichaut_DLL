@@ -1,3 +1,7 @@
+using ArtichautLibrary.Helper;
+using ArtichautLibrary.Providers;
+using ArtichautLibrary.Services;
+
 namespace ArtichautLibrary;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +24,36 @@ public static class DependencyInjection
         this IServiceCollection services,
         string baseUrl)
     {
-        services.AddHttpClient<ArtichautClient>(client => { client.BaseAddress = new Uri(baseUrl); });
+        // 1. Token global
+        services.AddSingleton<ITokenProvider, TokenProvider>();
+
+        // 2. Handler d’auth automatique
+        services.AddTransient<AuthHeaderHandler>();
+
+        // 3. HttpClient pour les services API
+        services.AddHttpClient<IAuthService, AuthService>(client =>
+            {
+                client.BaseAddress = new Uri(baseUrl);
+            })
+            .AddHttpMessageHandler<AuthHeaderHandler>();
+
+        services.AddHttpClient<IBookingService, BookingService>(client =>
+            {
+                client.BaseAddress = new Uri(baseUrl);
+            })
+            .AddHttpMessageHandler<AuthHeaderHandler>();
+
+        services.AddHttpClient<IOptionService, OptionService>(client =>
+            {
+                client.BaseAddress = new Uri(baseUrl);
+            })
+            .AddHttpMessageHandler<AuthHeaderHandler>();
+
+        // 4. Client principal
+        services.AddHttpClient<ArtichautClient>(client =>
+        {
+            client.BaseAddress = new Uri(baseUrl);
+        });
 
         return services;
     }
