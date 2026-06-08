@@ -4,12 +4,13 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ArtichautDesktopApp.Views;
+namespace ArtichautDesktopApp.Views.Components;
 
-public partial class LandingView : UserControl
+public partial class SideMenu : UserControl
 {
-    public LandingView()
+    public SideMenu()
     {
         InitializeComponent();
+        DataContext = App.Services.GetRequiredService<SideMenuViewModel>();
     }
 }

@@ -41,8 +41,9 @@ public partial class App : Avalonia.Application
         services.AddArtichautClient("http://localhost:8080");
 
         // ViewModels
-        services.AddTransient<ViewModels.MainWindowViewModel>();
-        services.AddTransient<ViewModels.LoginViewModel>();
-        services.AddTransient<ViewModels.LandingViewModel>();
+        services.AddSingleton<ViewModels.MainWindowViewModel>();
+        services.AddSingleton<ViewModels.LoginViewModel>();
+        services.AddSingleton<ViewModels.LandingViewModel>();
+        services.AddSingleton<ViewModels.SideMenuViewModel>();
     }
 }

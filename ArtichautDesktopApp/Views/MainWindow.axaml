@@ -16,16 +16,6 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <!-- <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext> -->
-
     <ContentControl Content="{Binding CurrentViewModel}"/>
-    
-    <!-- <StackPanel>
-        <components:Header />
-    
-        <components:LoginForm DataContext="{Binding LoginVm}" />
-    </StackPanel> -->
 
 </Window>
