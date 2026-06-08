@@ -10,9 +10,4 @@ public partial class LoginForm : UserControl
     {
         InitializeComponent();
     }
-    
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
-    {
-        Console.WriteLine($"Login : {Email.Text}");
-    }
 }

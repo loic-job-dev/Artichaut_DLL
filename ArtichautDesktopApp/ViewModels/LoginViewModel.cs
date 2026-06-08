@@ -1,13 +1,40 @@
+using System.Threading.Tasks;
+using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace ArtichautDesktopApp.ViewModels;
 
-public partial class LoginViewModel: MainWindowViewModel
+public partial class LoginViewModel : ViewModelBase
 {
-    [ObservableProperty] private string _errorMessage;
-
-    public LoginViewModel(string anyResult)
+    private  readonly IAuthService _authService;
+    
+    public LoginViewModel(IAuthService authService)
     {
-        _errorMessage = anyResult;
+        _authService = authService;
+    }
+    
+    [ObservableProperty]
+    private string email = "";
+
+    [ObservableProperty]
+    private string password = "";
+
+    [ObservableProperty]
+    private string errorMessage = "";
+
+    [RelayCommand]
+    private async Task Login()
+    {
+        var result = await _authService.Login(Email, Password);
+        
+        if (result.Success)
+        {
+            ErrorMessage = "OK";
+        }
+        else
+        {
+            ErrorMessage = result.ErrorMessage;
+        }
     }
 }

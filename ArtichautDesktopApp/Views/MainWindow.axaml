@@ -16,12 +16,10 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <!-- <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
-
     <StackPanel>
         <components:Header />
     
-        <components:LoginForm/>
+        <components:LoginForm DataContext="{Binding LoginVm}" />
     </StackPanel>
 
 </Window>

@@ -6,7 +6,7 @@ public class TokenProvider : ITokenProvider
 
     public string? GetToken() => _token;
 
-    public void SetToken(string token)
+    public void SetToken(string? token)
     {
         _token = token;
     }

@@ -1,7 +1,4 @@
-using System.Net;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text.RegularExpressions;
 using ArtichautLibrary.Helper;
 using ArtichautLibrary.Providers;
 
@@ -14,9 +11,6 @@ public class AuthService: IAuthService
 
     public string? AccessToken { get; private set; }
     
-    private static readonly Regex EmailRegex =
-        new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-            RegexOptions.Compiled);
     
     public AuthService(HttpClient httpClient, ITokenProvider tokenProvider)
     {
@@ -45,12 +39,6 @@ public class AuthService: IAuthService
     /// </exception>
     public async Task<ApiResult<AuthResponse>> Login(string email, string password)
     {
-        if (!EmailRegex.IsMatch(email))
-        {
-            throw new ArgumentException(
-                "Format d'email incorrect !",
-                nameof(email));
-        }
         
         var request = new LoginRequest(email, password);
 
@@ -60,8 +48,7 @@ public class AuthService: IAuthService
         );
         
         var result = await HandlerResponseHelper.HandlerResponse<AuthResponse>(response);
-
-        // 🔥 token uniquement ici (logique métier)
+        
         if (result.Success && result.Data?.AccessToken != null)
         {
             _tokenProvider.SetToken(result.Data.AccessToken);
@@ -128,12 +115,6 @@ public class AuthService: IAuthService
         string city
         )
     {
-        if (!EmailRegex.IsMatch(email))
-        {
-            throw new ArgumentException(
-                "Format d'email incorrect !",
-                nameof(email));
-        }
         
         var request = new SignUpRequest(email, 
             password, 
