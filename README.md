@@ -1,6 +1,10 @@
 # ArtichautConnect
 
-ArtichautConnect is a .NET client library designed to simplify communication with the Artichaut REST API.
+This solution contains a DLL ArtichautLibrary which call the Artichaut API, and a MVVM destktop application (ArtichautDesktopApp) with the Avalonia MVVM framework.
+
+# ArtichautLibrary
+
+ArtichautLibrary is a .NET client library designed to simplify communication with the Artichaut REST API.
 
 The library provides strongly-typed services for authentication, booking management, and other Artichaut API features while handling HTTP communication internally.
 
@@ -220,3 +224,6 @@ This method allows a user with the correct role to add an aoption to a booking.
 
 * .NET 10 or later
 * Access to a running Artichaut API instance
+
+# ArtichautDesktopApp
+
