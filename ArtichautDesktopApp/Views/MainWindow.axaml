@@ -15,11 +15,17 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    
+    <!-- <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext> -->
 
-    <StackPanel>
+    <ContentControl Content="{Binding CurrentViewModel}"/>
+    
+    <!-- <StackPanel>
         <components:Header />
     
         <components:LoginForm DataContext="{Binding LoginVm}" />
-    </StackPanel>
+    </StackPanel> -->
 
 </Window>

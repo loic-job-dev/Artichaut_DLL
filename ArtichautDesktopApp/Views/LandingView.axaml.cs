@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ArtichautDesktopApp.Views;
 
-public partial class Landing : UserControl
+public partial class LandingView : UserControl
 {
-    public Landing()
+    public LandingView()
     {
         InitializeComponent();
         DataContext = App.Services.GetRequiredService<LandingViewModel>();

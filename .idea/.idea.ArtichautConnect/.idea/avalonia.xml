@@ -9,6 +9,7 @@
         <entry key="ArtichautDesktopApp/Views/Landing.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/LandingView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/LoginForm.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/LoginView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/MainWindow.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
       </map>
     </option>

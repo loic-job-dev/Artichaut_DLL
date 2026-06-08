@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -8,6 +9,8 @@ namespace ArtichautDesktopApp.ViewModels;
 public partial class LoginViewModel : ViewModelBase
 {
     private  readonly IAuthService _authService;
+    
+    public event Action? LoginSucceeded;
     
     public LoginViewModel(IAuthService authService)
     {
@@ -31,6 +34,7 @@ public partial class LoginViewModel : ViewModelBase
         if (result.Success)
         {
             ErrorMessage = "OK";
+            LoginSucceeded?.Invoke();
         }
         else
         {

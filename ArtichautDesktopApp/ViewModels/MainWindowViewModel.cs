@@ -1,18 +1,22 @@
-﻿namespace ArtichautDesktopApp.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace ArtichautDesktopApp.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase _currentView;
+    [ObservableProperty]
+    private ViewModelBase currentViewModel;
     
-    public LoginViewModel LoginVm { get; }
     public MainWindowViewModel(LoginViewModel loginVm)
     {
-        LoginVm = loginVm;
+        loginVm.LoginSucceeded += OnLoginSucceeded;
+
+        CurrentViewModel = loginVm;
     }
-    
-     public ViewModelBase CurrentView
+
+    private void OnLoginSucceeded()
     {
-        get => _currentView;
-        set => SetProperty(ref _currentView, value);
+        CurrentViewModel = App.Services.GetRequiredService<LandingViewModel>();
     }
 }
