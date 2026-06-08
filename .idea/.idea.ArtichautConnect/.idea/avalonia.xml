@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="ArtichautDesktopApp/App.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Components/Header.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Components/LoginForm.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/LoginForm.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/MainWindow.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

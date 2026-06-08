@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ArtichautDesktopApp.Views.Components.Header">
+    <Border Background="#E0C64D"
+            Height="251">
+
+        <Grid Margin="40,20">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Logo gauche -->
+            <Image Grid.Column="0"
+                   Width="180"
+                   Height="180"
+                   Source="/Assets/logo_artichaut.png"
+                   Stretch="Uniform"
+                   VerticalAlignment="Center"/>
+
+            <!-- Texte centré -->
+            <StackPanel Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <TextBlock
+                    Text="Artichaut Pro"
+                    FontFamily="Playfair Display"
+                    FontSize="48"
+                    HorizontalAlignment="Center"/>
+
+                <TextBlock
+                    Text="L’appli réservée aux employés"
+                    FontFamily="Montserrat"
+                    FontSize="36"
+                    HorizontalAlignment="Center"/>
+
+            </StackPanel>
+
+            <!-- Logo droit -->
+            <Image Grid.Column="2"
+                   Width="180"
+                   Height="180"
+                   Source="/Assets/logo_artichaut.png"
+                   Stretch="Uniform"
+                   VerticalAlignment="Center"/>
+
+        </Grid>
+
+    </Border>
+
+</UserControl>
