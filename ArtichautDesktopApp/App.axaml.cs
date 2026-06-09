@@ -46,11 +46,11 @@ public partial class App : Avalonia.Application
         
         // ViewModels
         services.AddSingleton<ViewModels.MainWindowViewModel>();
-        services.AddSingleton<ViewModels.LoginViewModel>();
-        services.AddSingleton<ViewModels.LandingViewModel>();
+        services.AddTransient<ViewModels.LoginViewModel>();
+        services.AddTransient<ViewModels.LandingViewModel>();
         services.AddSingleton<ViewModels.SideMenuViewModel>();
-        services.AddSingleton<ViewModels.CheckinViewModel>();
-        services.AddSingleton<ViewModels.BookingSearchViewModel>();
+        services.AddTransient<ViewModels.CheckinViewModel>();
+        services.AddTransient<ViewModels.BookingSearchViewModel>();
 
     }
 }
