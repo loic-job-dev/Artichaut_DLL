@@ -33,9 +33,10 @@
             DataContext="{Binding SideMenu}"/>
 
         <!-- Zone principale -->
-        <components:BookingSearch
+        <ContentControl
             Grid.Row="1"
-            Grid.Column="1"/>
+            Grid.Column="1"
+            Content="{Binding CurrentContent}" />
 
     </Grid>
     

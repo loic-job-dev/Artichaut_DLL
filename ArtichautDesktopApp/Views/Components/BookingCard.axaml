@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ArtichautDesktopApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ArtichautDesktopApp.Views.Components.BookingCard"
+             x:DataType="vm:BookingCardViewModel">
+
+    <Border
+        Background="#8BA89A"
+        CornerRadius="10"
+        Margin="0,10"
+        Padding="32">
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Description réservation -->
+
+            <TextBlock
+                Grid.Column="0"
+                Text="{Binding Description}"
+                FontFamily="Montserrat"
+                FontSize="24"
+                VerticalAlignment="Center"
+                TextWrapping="Wrap"/>
+
+            <!-- Bouton -->
+
+            <Button
+                Grid.Column="1"
+                Width="193"
+                Height="41"
+                Margin="24,0,0,0"
+                Content="Check-in"
+                Command="{Binding CheckInCommand}">
+
+                <Button.Styles>
+
+                    <Style Selector="Button">
+
+                        <Setter Property="Background"
+                                Value="#2D494C"/>
+
+                        <Setter Property="Foreground"
+                                Value="#E0C64D"/>
+
+                        <Setter Property="FontFamily"
+                                Value="Montserrat"/>
+
+                        <Setter Property="FontSize"
+                                Value="24"/>
+
+                        <Setter Property="FontWeight"
+                                Value="SemiBold"/>
+
+                    </Style>
+
+                </Button.Styles>
+
+            </Button>
+
+        </Grid>
+
+    </Border>
+
+</UserControl>

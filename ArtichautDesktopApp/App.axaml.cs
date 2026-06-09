@@ -50,6 +50,7 @@ public partial class App : Avalonia.Application
         services.AddSingleton<ViewModels.LandingViewModel>();
         services.AddSingleton<ViewModels.SideMenuViewModel>();
         services.AddSingleton<ViewModels.CheckinViewModel>();
-        
+        services.AddSingleton<ViewModels.BookingSearchViewModel>();
+
     }
 }

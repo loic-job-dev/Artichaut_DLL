@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ArtichautDesktopApp.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="ArtichautDesktopApp.Views.Components.BookingSearch"
+             x:Class="ArtichautDesktopApp.Views.BookingSearchView"
              x:DataType="vm:BookingSearchViewModel">
     
     <StackPanel
@@ -72,7 +72,7 @@
             Height="65"
             HorizontalAlignment="Center"
             Content="Recherche"
-            Command="{Binding SearchFoCheckinCommand}">
+            Command="{Binding GetBookingsToCheckinByClientCommand}">
 
             <Button.Styles>
                 <Style Selector="Button">

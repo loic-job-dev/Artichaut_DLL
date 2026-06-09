@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using ArtichautLibrary;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -10,11 +12,6 @@ public partial class BookingSearchViewModel : ViewModelBase
 {
     private  readonly IBookingService _bookingService;
     
-    public BookingSearchViewModel(IBookingService bookingService)
-    {
-        _bookingService = bookingService;
-    }
-    
     [ObservableProperty]
     private string lastName = "";
 
@@ -23,19 +20,32 @@ public partial class BookingSearchViewModel : ViewModelBase
 
     [ObservableProperty]
     private string errorMessage = "";
+    
+    // Event to change the ViewModel in CheckinViewModel
+    public event Action<List<BookingResponse>>? SearchSucceeded;
 
-    [RelayCommand]
-    private async Task SearchFoCheckin()
+    
+    public BookingSearchViewModel(IBookingService bookingService)
     {
-        var result = await _bookingService.GetBookingsToCheckinByClient(FirstName, LastName);
+        _bookingService = bookingService;
+    }
+    
+    
+    [RelayCommand]
+    private async Task GetBookingsToCheckinByClient()
+    {
+        var result = await _bookingService.GetBookingsToCheckinByClient(
+            firstName,
+            lastName);
         
         if (result.Success)
         {
-            ErrorMessage = result.Data.ToString();
+            Console.WriteLine(result.Data.ToString());
+            SearchSucceeded?.Invoke(result.Data);
         }
         else
         {
-            ErrorMessage = result.ErrorMessage;
+            Console.WriteLine(result.ErrorMessage);
         }
     }
 }

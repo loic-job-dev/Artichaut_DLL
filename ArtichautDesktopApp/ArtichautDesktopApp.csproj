@@ -27,4 +27,15 @@
     <ItemGroup>
       <ProjectReference Include="..\ArtichautLibrary\ArtichautLibrary.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\BookingSearchView.axaml.cs">
+        <DependentUpon>BookingSearchView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\BookingResultsView.axaml.cs">
+        <DependentUpon>BookingResultsView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

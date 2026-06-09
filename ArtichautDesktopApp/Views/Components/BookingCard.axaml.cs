@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace ArtichautDesktopApp.Views.Components;
 
-public partial class BookingSearch : UserControl
+public partial class BookingCard : UserControl
 {
-    public BookingSearch()
+    public BookingCard()
     {
         InitializeComponent();
     }
