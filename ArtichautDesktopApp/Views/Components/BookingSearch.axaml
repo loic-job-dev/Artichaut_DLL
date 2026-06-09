@@ -71,7 +71,7 @@
             Width="254"
             Height="65"
             HorizontalAlignment="Center"
-            Content="Se connecter"
+            Content="Recherche"
             Command="{Binding SearchFoCheckinCommand}">
 
             <Button.Styles>
