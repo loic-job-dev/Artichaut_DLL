@@ -1,7 +1,6 @@
-using System;
 using System.Linq;
-using System.Threading.Tasks;
 using ArtichautDesktopApp.Models;
+
 using CommunityToolkit.Mvvm.Input;
 
 namespace ArtichautDesktopApp.ViewModels;
@@ -10,25 +9,23 @@ public partial class BookingCardViewModel : ViewModelBase
 {
     public Booking Booking { get; }
     
-    public event Func<Booking, Task>? CheckInRequested;
+    public string? BookingDescription { get; }
+
+    public string? ActionText { get; }
+
+    public bool HasAction => ActionCommand != null;
+
+    public IRelayCommand? ActionCommand { get; }
 
     public BookingCardViewModel(
-        Booking booking)
+        Booking booking,
+        string? bookingDescription,
+        string? actionText = null,
+        IRelayCommand? actionCommand = null)
     {
         Booking = booking;
-    }
-
-    public string Description =>
-        $"Du {Booking.StartDate:dd/MM/yyyy} au {Booking.EndDate:dd/MM/yyyy}, " +
-        $"pour {Booking.AdultCount + Booking.ChildrenCount} personnes, " +
-        $"en {Booking.RoomTypes.FirstOrDefault()?.Description ?? "chambre"}.";
-
-    
-    
-    [RelayCommand]
-    private async Task CheckIn()
-    {
-        if (CheckInRequested != null)
-            await CheckInRequested.Invoke(Booking);
+        BookingDescription = bookingDescription;
+        ActionText = actionText;
+        ActionCommand = actionCommand;
     }
 }

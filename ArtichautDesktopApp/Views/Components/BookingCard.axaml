@@ -25,7 +25,7 @@
 
             <TextBlock
                 Grid.Column="0"
-                Text="{Binding Description}"
+                Text="{Binding BookingDescription}"
                 Classes="h4"
                 VerticalAlignment="Center"
                 TextWrapping="Wrap"/>
@@ -38,9 +38,9 @@
                 Width="193"
                 Height="41"
                 Margin="24,0,0,0"
-                Content="Check-in"
-                Command="{Binding CheckInCommand}"
-                >
+                Content="{Binding ActionText}"
+                Command="{Binding ActionCommand}"
+                IsVisible="{Binding HasAction}">
 
                 <Button.Styles>
                     <Style Selector="Button">

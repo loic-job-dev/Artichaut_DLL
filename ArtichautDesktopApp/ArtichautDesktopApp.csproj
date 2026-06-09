@@ -37,4 +37,8 @@
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Authentication\" />
+    </ItemGroup>
 </Project>

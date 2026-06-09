@@ -20,25 +20,25 @@ class Program
 
         var client = provider.GetRequiredService<ArtichautClient>();
         
-         var authClient = await client.Auth.SignUp(
-             "test.testouille01@test.com",
-             "Password123!",
-             "Test",
-             "Testouille",
-             "0612345678",
-             "tupeuxpastest01",
-             12,
-             "Rue",
-             "de la Paix",
-             null,
-             "75001",
-             "Paris"
-         );
-        
-         // var authClient = await client.Auth.Login(
-         //     "john.doe@test.com",
-         //     "Password123!"
+         // var authClient = await client.Auth.SignUp(
+         //     "test.testouille01@test.com",
+         //     "Password123!",
+         //     "Test",
+         //     "Testouille",
+         //     "0612345678",
+         //     "tupeuxpastest01",
+         //     12,
+         //     "Rue",
+         //     "de la Paix",
+         //     null,
+         //     "75001",
+         //     "Paris"
          // );
+        
+         var authClient = await client.Auth.Login(
+             "test.testouille01@test.com",
+             "Password123!"
+         );
 
         if (authClient.Success)
         {
