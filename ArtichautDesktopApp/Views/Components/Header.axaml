@@ -30,14 +30,12 @@
 
                 <TextBlock
                     Text="Artichaut Pro"
-                    FontFamily="Playfair Display"
-                    FontSize="48"
+                    Classes="h1"
                     HorizontalAlignment="Center"/>
 
                 <TextBlock
                     Text="L’appli réservée aux employés"
-                    FontFamily="Montserrat"
-                    FontSize="36"
+                    Classes="h2"
                     HorizontalAlignment="Center"/>
 
             </StackPanel>

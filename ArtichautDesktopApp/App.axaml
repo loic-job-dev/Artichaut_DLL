@@ -5,11 +5,57 @@
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
+    <Application.Resources>
+
+        <FontFamily x:Key="Montserrat">
+            avares://ArtichautDesktopApp/Assets/Fonts/Montserrat-Regular.ttf#Montserrat
+        </FontFamily>
+        <FontFamily x:Key="MontserratSemiBold">
+            avares://ArtichautDesktopApp/Assets/Fonts/Montserrat-SemiBold.ttf#Montserrat SemiBold
+        </FontFamily>
+
+        <FontFamily x:Key="Playfair">
+            avares://ArtichautDesktopApp/Assets/Fonts/PlayfairDisplay-Regular.ttf#Playfair Display
+        </FontFamily>
+        <FontFamily x:Key="PlayfairBold">
+            avares://ArtichautDesktopApp/Assets/Fonts/PlayfairDisplay-Bold.ttf#Playfair Display Bold
+        </FontFamily>
+    </Application.Resources>
+             
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
   
     <Application.Styles>
         <FluentTheme />
+        <Style Selector="TextBlock.h1">
+            <Setter Property="FontFamily" Value="{StaticResource Playfair}" />
+            <Setter Property="FontSize" Value="48" />
+        </Style>
+
+        <Style Selector="TextBlock.h2">
+            <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
+            <Setter Property="FontSize" Value="36" />
+        </Style>
+
+        <Style Selector="TextBlock.body">
+            <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+        
+        <Style Selector="TextBox">
+            <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+        
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="#2D494C" />
+            <Setter Property="Foreground" Value="#E0C64D" />
+            <Setter Property="FontFamily" Value="{StaticResource MontserratSemiBold}" />
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0"/>
+        </Style>
     </Application.Styles>
 </Application>
