@@ -1,4 +1,5 @@
 using System.Linq;
+using ArtichautDesktopApp.Models;
 using ArtichautLibrary;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -7,16 +8,16 @@ namespace ArtichautDesktopApp.ViewModels;
 
 public partial class BookingCardViewModel : ViewModelBase
 {
-    public BookingResponse Booking { get; }
+    public Booking Booking { get; }
 
-    public BookingCardViewModel(BookingResponse booking)
+    public BookingCardViewModel(Booking booking)
     {
         Booking = booking;
     }
 
     public string Description =>
-        $"Du {Booking.StartBookedDate:dd/MM/yyyy} au {Booking.EndBookedDate:dd/MM/yyyy}, " +
-        $"pour {Booking.AdultNumber + Booking.ChildrenNumber} personnes, " +
+        $"Du {Booking.StartDate:dd/MM/yyyy} au {Booking.EndDate:dd/MM/yyyy}, " +
+        $"pour {Booking.AdultCount + Booking.ChildrenCount} personnes, " +
         $"en {Booking.RoomTypes.FirstOrDefault()?.Description ?? "chambre"}.";
 
     [RelayCommand]

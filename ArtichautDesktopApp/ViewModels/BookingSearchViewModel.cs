@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using ArtichautLibrary;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ArtichautDesktopApp.Mappers;
+using ArtichautDesktopApp.Models;
 
 namespace ArtichautDesktopApp.ViewModels;
 
@@ -22,7 +24,7 @@ public partial class BookingSearchViewModel : ViewModelBase
     private string errorMessage = "";
     
     // Event to change the ViewModel in CheckinViewModel
-    public event Action<List<BookingResponse>>? SearchSucceeded;
+    public event Action<List<Booking>>? SearchSucceeded;
 
     
     public BookingSearchViewModel(IBookingService bookingService)
@@ -40,12 +42,15 @@ public partial class BookingSearchViewModel : ViewModelBase
         
         if (result.Success)
         {
-            Console.WriteLine(result.Data.ToString());
-            SearchSucceeded?.Invoke(result.Data);
+            var bookings = result.Data
+                .Select(x => x.ToModel())
+                .ToList();
+
+            SearchSucceeded?.Invoke(bookings);
         }
         else
         {
-            Console.WriteLine(result.ErrorMessage);
+            errorMessage = result.ErrorMessage;
         }
     }
 }
