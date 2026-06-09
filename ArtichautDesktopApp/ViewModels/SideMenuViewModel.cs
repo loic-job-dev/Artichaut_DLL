@@ -1,4 +1,5 @@
 using System;
+using ArtichautDesktopApp.Services;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -8,26 +9,27 @@ namespace ArtichautDesktopApp.ViewModels;
 public partial class SideMenuViewModel : ObservableObject
 {
     private  readonly IAuthService _authService;
+    private readonly INavigationService _navigation;
     
-    public event Action? LogoutSucceeded;
-    
-    public SideMenuViewModel(IAuthService authService)
+    public SideMenuViewModel(IAuthService authService, INavigationService navigation)
     {
         _authService = authService;
+        _navigation = navigation;
     }
     
     [RelayCommand]
-    private void CheckIn()
+    private void GoToCheckIn()
+    {
+        _navigation.NavigateTo<CheckinViewModel>();
+    }
+
+    [RelayCommand]
+    private void GoToCheckOut()
     {
     }
 
     [RelayCommand]
-    private void CheckOut()
-    {
-    }
-
-    [RelayCommand]
-    private void AddOption()
+    private void GoToAddOption()
     {
     }
 
@@ -36,6 +38,6 @@ public partial class SideMenuViewModel : ObservableObject
     {
         Console.WriteLine("Logout clicked");
         _authService.Logout();
-        LogoutSucceeded?.Invoke();
+        _navigation.NavigateTo<LoginViewModel>();
     }
 }

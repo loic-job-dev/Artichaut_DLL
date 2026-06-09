@@ -1,4 +1,5 @@
 ﻿using System;
+using ArtichautDesktopApp.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,25 +10,11 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private ViewModelBase currentViewModel;
     
-    public MainWindowViewModel(
-        LoginViewModel loginVm,
-        LandingViewModel landVm)
+    public MainWindowViewModel(INavigationService navigation)
     {
-        Console.WriteLine($"Subscribed to LandingVM {landVm.GetHashCode()}");
-        
-        loginVm.LoginSucceeded += OnLoginSucceeded;
-        landVm.LogoutRequested += OnLogoutSucceeded;
+        navigation.CurrentChanged += vm =>
+            CurrentViewModel = vm;
 
-        CurrentViewModel = loginVm;
-    }
-
-    private void OnLoginSucceeded()
-    {
-        CurrentViewModel = App.Services.GetRequiredService<LandingViewModel>();
-    }
-
-    private void OnLogoutSucceeded()
-    {
-        CurrentViewModel = App.Services.GetRequiredService<LoginViewModel>();
+        navigation.NavigateTo<LoginViewModel>();
     }
 }

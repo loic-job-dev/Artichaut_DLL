@@ -30,19 +30,19 @@
                 Content="Faire un Check-in"
                 HorizontalContentAlignment="Left"
                 Classes="MenuButton"
-                Command="{Binding CheckInCommand}"/>
+                Command="{Binding GoToCheckInCommand}"/>
 
             <Button
                 Content="Faire un Check-out"
                 HorizontalContentAlignment="Left"
                 Classes="MenuButton"
-                Command="{Binding CheckOutCommand}"/>
+                Command="{Binding GoToCheckOutCommand}"/>
 
             <Button
                 Content="Ajouter une option"
                 HorizontalContentAlignment="Left"
                 Classes="MenuButton"
-                Command="{Binding AddOptionCommand}"/>
+                Command="{Binding GoToAddOptionCommand}"/>
 
             <Separator Margin="0,20"/>
 

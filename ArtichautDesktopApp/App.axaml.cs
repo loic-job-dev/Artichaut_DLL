@@ -1,4 +1,5 @@
 using System;
+using ArtichautDesktopApp.Services;
 using ArtichautLibrary;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -40,10 +41,15 @@ public partial class App : Avalonia.Application
         // API Client
         services.AddArtichautClient("http://localhost:8080");
 
+        // Navigation
+        services.AddSingleton<INavigationService, NavigationService>();
+        
         // ViewModels
         services.AddSingleton<ViewModels.MainWindowViewModel>();
         services.AddSingleton<ViewModels.LoginViewModel>();
         services.AddSingleton<ViewModels.LandingViewModel>();
         services.AddSingleton<ViewModels.SideMenuViewModel>();
+        services.AddSingleton<ViewModels.CheckinViewModel>();
+        
     }
 }

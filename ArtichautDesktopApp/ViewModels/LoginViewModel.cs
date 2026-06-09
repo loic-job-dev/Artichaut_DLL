@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using ArtichautDesktopApp.Services;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -9,12 +10,12 @@ namespace ArtichautDesktopApp.ViewModels;
 public partial class LoginViewModel : ViewModelBase
 {
     private  readonly IAuthService _authService;
+    private readonly INavigationService _navigation;
     
-    public event Action? LoginSucceeded;
-    
-    public LoginViewModel(IAuthService authService)
+    public LoginViewModel(IAuthService authService, INavigationService navigation)
     {
         _authService = authService;
+        _navigation = navigation;
     }
     
     [ObservableProperty]
@@ -34,7 +35,7 @@ public partial class LoginViewModel : ViewModelBase
         if (result.Success)
         {
             ErrorMessage = "OK";
-            LoginSucceeded?.Invoke();
+            _navigation.NavigateTo<LandingViewModel>();
         }
         else
         {

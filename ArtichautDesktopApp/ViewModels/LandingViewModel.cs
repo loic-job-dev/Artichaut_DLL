@@ -1,27 +1,20 @@
 using System;
+using ArtichautDesktopApp.Services;
 using CommunityToolkit.Mvvm.Input;
 
 namespace ArtichautDesktopApp.ViewModels;
 
 public partial class LandingViewModel : ViewModelBase
 {
-    public event Action? LogoutRequested;
+    private readonly INavigationService _navigation;
 
-    private readonly SideMenuViewModel _sideMenu;
-
+    public SideMenuViewModel SideMenu { get; }
+    
     public LandingViewModel(
-        SideMenuViewModel sideMenu)
+        SideMenuViewModel sideMenu, 
+        INavigationService navigation)
     {
-        Console.WriteLine($"LandingVM {GetHashCode()}");
-
-        _sideMenu = sideMenu;
-
-        _sideMenu.LogoutSucceeded += () =>
-        {
-            Console.WriteLine($"Logout relayed by {GetHashCode()}");
-            LogoutRequested?.Invoke();
-        };
+        SideMenu = sideMenu;
+        _navigation = navigation;
     }
-
-    public SideMenuViewModel SideMenu => _sideMenu;
 }

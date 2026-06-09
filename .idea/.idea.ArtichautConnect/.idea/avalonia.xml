@@ -4,6 +4,8 @@
     <option name="projectPerEditor">
       <map>
         <entry key="ArtichautDesktopApp/App.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/CheckinView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Components/BookingSearch.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/Components/Header.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/Components/LoginForm.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/Components/SideMenu.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
