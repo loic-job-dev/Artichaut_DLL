@@ -1,3 +1,4 @@
+using System.Linq;
 using ArtichautDesktopApp.Models;
 using ArtichautLibrary;
 
@@ -15,7 +16,14 @@ public static class BookingMapper
             AdultCount = response.AdultNumber,
             ChildrenCount = response.ChildrenNumber,
             TotalPrice = response.FinalPrice ?? 0,
-            Status = ParseStatus(response.Status)
+            Status = ParseStatus(response.Status),
+            RoomTypes = response.RoomTypes
+                .Select(x => x.ToModel())
+                .ToList(),
+
+            Rooms = response.Rooms
+                .Select(x => x.ToModel())
+                .ToList()
         };
     }
 

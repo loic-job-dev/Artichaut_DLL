@@ -27,7 +27,7 @@ public partial class CheckinViewModel : ViewModelBase
         searchVm.SearchSucceeded += bookings =>
         {
             CurrentContent =
-                new BookingResultsViewModel(bookings);
+                new BookingResultsViewModel(bookings, bookingService);
         };
         
         CurrentContent = searchVm;

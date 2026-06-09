@@ -20,25 +20,25 @@ class Program
 
         var client = provider.GetRequiredService<ArtichautClient>();
         
-         // var authClient = await client.Auth.SignUp(
-         //     "john.doe@test.com",
-         //     "Password123!",
-         //     "John",
-         //     "Doe",
-         //     "0612345678",
-         //     "johndoe",
-         //     12,
-         //     "Rue",
-         //     "de la Paix",
-         //     null,
-         //     "75001",
-         //     "Paris"
-         // );
-        
-         var authClient = await client.Auth.Login(
-             "john.doe@test.com",
-             "Password123!"
+         var authClient = await client.Auth.SignUp(
+             "test.testouille01@test.com",
+             "Password123!",
+             "Test",
+             "Testouille",
+             "0612345678",
+             "tupeuxpastest01",
+             12,
+             "Rue",
+             "de la Paix",
+             null,
+             "75001",
+             "Paris"
          );
+        
+         // var authClient = await client.Auth.Login(
+         //     "john.doe@test.com",
+         //     "Password123!"
+         // );
 
         if (authClient.Success)
         {
@@ -54,7 +54,7 @@ class Program
 
          var result = await client.Booking.CreateBooking(
          DateOnly.FromDateTime(DateTime.Now),
-         DateOnly.FromDateTime(DateTime.Now.AddDays(2)),
+         DateOnly.FromDateTime(DateTime.Now.AddDays(1)),
          2, 
          0, 
          "STD");
@@ -76,10 +76,10 @@ class Program
         
         client.Auth.Logout();
         
-         var auth = await client.Auth.Login(
-             "rlame@artichaut.fr",
-             "RaitournelleDeGalles"
-         );
+         // var auth = await client.Auth.Login(
+         //     "rlame@artichaut.fr",
+         //     "RaitournelleDeGalles"
+         // );
         //
         // if (auth.Success)
         // {
@@ -90,20 +90,20 @@ class Program
         //     Console.WriteLine(auth.ErrorMessage);
         // }
         
-        var checkin = await client.Booking.Checkin(
-            status,
-            startBookedDate,
-            roomTypeId,
-            bookingIg);
-        
-        if (checkin.Success)
-        {
-            Console.WriteLine(checkin.Data);
-        }
-        else
-        {
-            Console.WriteLine(checkin.ErrorMessage);
-        }
+        // var checkin = await client.Booking.Checkin(
+        //     status,
+        //     startBookedDate,
+        //     roomTypeId,
+        //     bookingIg);
+        //
+        // if (checkin.Success)
+        // {
+        //     Console.WriteLine(checkin.Data);
+        // }
+        // else
+        // {
+        //     Console.WriteLine(checkin.ErrorMessage);
+        // }
 
         // var bookingsToCheckin = await client.Booking.GetBookingsToCheckinByClient("John", "Doe");
         //
@@ -122,25 +122,25 @@ class Program
         // }
         //
         //
-         var bookingsToCheckout = await client.Booking.GetBookingsToCheckoutByClient("John", "Doe");
-        
-         string bookingIdToCheckout = "";
-        
-         if (bookingsToCheckout.Success)
-         {
-             bookingIdToCheckout = bookingsToCheckout.Data[0].Id.ToString();
-             
-             foreach (var booking in bookingsToCheckout.Data)
-             {
-                 Console.WriteLine($"Id de la réservation : {booking.Id}");
-                 Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");
-                 Console.WriteLine($"Statut de la réservation : {booking.Status}\n");
-             }
-         }
-         else
-         {
-             Console.WriteLine(bookingsToCheckout.ErrorMessage);
-         }
+         // var bookingsToCheckout = await client.Booking.GetBookingsToCheckoutByClient("John", "Doe");
+         //
+         // string bookingIdToCheckout = "";
+         //
+         // if (bookingsToCheckout.Success)
+         // {
+         //     bookingIdToCheckout = bookingsToCheckout.Data[0].Id.ToString();
+         //     
+         //     foreach (var booking in bookingsToCheckout.Data)
+         //     {
+         //         Console.WriteLine($"Id de la réservation : {booking.Id}");
+         //         Console.WriteLine($"Id du type de chambre : {booking.RoomTypes[0].Id}");
+         //         Console.WriteLine($"Statut de la réservation : {booking.Status}\n");
+         //     }
+         // }
+         // else
+         // {
+         //     Console.WriteLine(bookingsToCheckout.ErrorMessage);
+         // }
         //
         // var bookingCheckoutDone = await client.Booking.Checkout(bookingIdToCheckout);
         //
@@ -153,49 +153,49 @@ class Program
         //     Console.WriteLine(bookingCheckoutDone.ErrorMessage);
         // }
 
-        var options = await client.Option.GetOptions();
-
-        if (options.Success)
-        {
-            foreach (var option in options.Data)
-            {
-                Console.WriteLine($"{option.Name} : {option.Description}\nId de l'option : {option.Id}\n");
-            }
-        }
-        else
-        {
-            Console.WriteLine(options.ErrorMessage);
-        }
-
-        var optionIdToAdd = "";
-
-        Console.WriteLine("Entrez l'Id de l'option à ajouter :");
-        optionIdToAdd = Console.ReadLine();
-
-        var bookingWithNewOption = await client.Option.AddOptionToBooking(
-            bookingIg,
-            optionIdToAdd,
-            DateOnly.FromDateTime(DateTime.Now),
-            DateOnly.FromDateTime(DateTime.Now));
-
-        if (bookingWithNewOption.Success)
-        {
-            Console.WriteLine(bookingWithNewOption.Data);
-        }
-        else
-        {
-            Console.WriteLine(bookingWithNewOption.ErrorMessage);
-        };
-        
-        var bookingCheckoutDone = await client.Booking.Checkout(bookingIg);
-        
-        if (bookingCheckoutDone.Success)
-        {
-            Console.WriteLine($"Prix final de la réservation : {bookingCheckoutDone.Data.FinalPrice}");
-        }
-        else
-        {
-            Console.WriteLine(bookingCheckoutDone.ErrorMessage);
-        }
+        // var options = await client.Option.GetOptions();
+        //
+        // if (options.Success)
+        // {
+        //     foreach (var option in options.Data)
+        //     {
+        //         Console.WriteLine($"{option.Name} : {option.Description}\nId de l'option : {option.Id}\n");
+        //     }
+        // }
+        // else
+        // {
+        //     Console.WriteLine(options.ErrorMessage);
+        // }
+        //
+        // var optionIdToAdd = "";
+        //
+        // Console.WriteLine("Entrez l'Id de l'option à ajouter :");
+        // optionIdToAdd = Console.ReadLine();
+        //
+        // var bookingWithNewOption = await client.Option.AddOptionToBooking(
+        //     bookingIg,
+        //     optionIdToAdd,
+        //     DateOnly.FromDateTime(DateTime.Now),
+        //     DateOnly.FromDateTime(DateTime.Now));
+        //
+        // if (bookingWithNewOption.Success)
+        // {
+        //     Console.WriteLine(bookingWithNewOption.Data);
+        // }
+        // else
+        // {
+        //     Console.WriteLine(bookingWithNewOption.ErrorMessage);
+        // };
+        //
+        // var bookingCheckoutDone = await client.Booking.Checkout(bookingIg);
+        //
+        // if (bookingCheckoutDone.Success)
+        // {
+        //     Console.WriteLine($"Prix final de la réservation : {bookingCheckoutDone.Data.FinalPrice}");
+        // }
+        // else
+        // {
+        //     Console.WriteLine(bookingCheckoutDone.ErrorMessage);
+        // }
     }
 }

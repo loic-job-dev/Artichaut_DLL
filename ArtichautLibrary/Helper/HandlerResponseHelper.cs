@@ -36,6 +36,8 @@ public class HandlerResponseHelper
             case HttpStatusCode.Conflict:
             case HttpStatusCode.Unauthorized:
             case HttpStatusCode.Forbidden:
+            case HttpStatusCode.NotFound:  
+            case HttpStatusCode.BadRequest:
             {
                 var message =  await response.Content.ReadAsStringAsync();
                 return new ApiResult<T>(

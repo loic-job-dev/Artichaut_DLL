@@ -134,14 +134,15 @@ public class AuthService: IAuthService
             request
         );
         
-        var auth = await response.Content
-            .ReadFromJsonAsync<AuthResponse>();
+        var result =
+            await HandlerResponseHelper.HandlerResponse<AuthResponse>(response);
 
-        if (auth?.AccessToken != null)
+        if (result.Success &&
+            result.Data?.AccessToken != null)
         {
-            _tokenProvider.SetToken(auth.AccessToken);
+            _tokenProvider.SetToken(result.Data.AccessToken);
         }
 
-        return await HandlerResponseHelper.HandlerResponse<AuthResponse>(response);
+        return result;
     }
 }
