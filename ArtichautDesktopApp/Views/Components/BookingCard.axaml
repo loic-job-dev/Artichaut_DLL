@@ -8,9 +8,10 @@
              x:DataType="vm:BookingCardViewModel">
 
     <Border
+        Width="900"
+        HorizontalAlignment="Center"
         Background="#8BA89A"
         CornerRadius="10"
-        Margin="0,10"
         Padding="32">
 
         <Grid>
@@ -25,8 +26,7 @@
             <TextBlock
                 Grid.Column="0"
                 Text="{Binding Description}"
-                FontFamily="Montserrat"
-                FontSize="24"
+                Classes="h4"
                 VerticalAlignment="Center"
                 TextWrapping="Wrap"/>
 
@@ -34,6 +34,7 @@
 
             <Button
                 Grid.Column="1"
+                Classes="primary"
                 Width="193"
                 Height="41"
                 Margin="24,0,0,0"
@@ -41,32 +42,14 @@
                 Command="{Binding CheckInCommand}">
 
                 <Button.Styles>
-
                     <Style Selector="Button">
-
-                        <Setter Property="Background"
-                                Value="#2D494C"/>
-
-                        <Setter Property="Foreground"
-                                Value="#E0C64D"/>
-
-                        <Setter Property="FontFamily"
-                                Value="Montserrat"/>
-
                         <Setter Property="FontSize"
                                 Value="24"/>
-
-                        <Setter Property="FontWeight"
-                                Value="SemiBold"/>
-
                     </Style>
-
                 </Button.Styles>
-
+                
             </Button>
-
         </Grid>
-
     </Border>
 
 </UserControl>

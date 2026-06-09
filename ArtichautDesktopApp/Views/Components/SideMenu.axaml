@@ -20,8 +20,7 @@
 
             <TextBlock
                 Text="Menu"
-                FontFamily="Montserrat"
-                FontSize="36"
+                Classes="h2"
                 TextDecorations="Underline"/>
 
             <!-- Actions -->
@@ -29,46 +28,31 @@
             <Button
                 Content="Faire un Check-in"
                 HorizontalContentAlignment="Left"
-                Classes="MenuButton"
+                Classes="menu"
                 Command="{Binding GoToCheckInCommand}"/>
 
             <Button
                 Content="Faire un Check-out"
                 HorizontalContentAlignment="Left"
-                Classes="MenuButton"
+                Classes="menu"
                 Command="{Binding GoToCheckOutCommand}"/>
 
             <Button
                 Content="Ajouter une option"
                 HorizontalContentAlignment="Left"
-                Classes="MenuButton"
+                Classes="menu"
                 Command="{Binding GoToAddOptionCommand}"/>
 
             <Separator Margin="0,20"/>
 
             <Button
                 Content="Se déconnecter"
+                Classes="menu"
                 HorizontalContentAlignment="Left"
-                Classes="MenuButton"
                 Command="{Binding LogoutCommand}"/>
 
         </StackPanel>
 
     </Border>
-
-    <UserControl.Styles>
-
-        <Style Selector="Button.MenuButton">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontFamily" Value="Montserrat"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Padding" Value="0"/>
-        </Style>
-
-    </UserControl.Styles>
     
 </UserControl>
-
-

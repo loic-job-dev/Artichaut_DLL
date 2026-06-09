@@ -31,7 +31,7 @@
                     <TextBlock
                         Grid.Column="0"
                         Text="Email :"
-                        Classes="h2"
+                        Classes="h3"
                         VerticalAlignment="Center"/>
 
                     <TextBox
@@ -44,22 +44,22 @@
                     <TextBlock
                         Grid.Column="0"
                         Text="Mot de passe :"
-                        Classes="h2"
+                        Classes="h3"
                         VerticalAlignment="Center"/>
 
                     <TextBox
+                        PasswordChar="●"
                         Text="{Binding Password}"
                         Grid.Column="1"
                         Height="50"/>
                     
                 </Grid>
                 
-                <Grid ColumnDefinitions="250,*">
                     <TextBlock 
                         Text="{Binding ErrorMessage}" 
+                        Classes="error"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"/>
-                </Grid>
 
             </StackPanel>
         </Border>

@@ -16,8 +16,7 @@
         <!-- Titre -->
         <TextBlock
             Text="Recherche réservation"
-            FontFamily="Playfair Display"
-            FontSize="48"
+            Classes="h1"
             HorizontalAlignment="Center"/>
 
         <!-- Formulaire -->
@@ -32,8 +31,7 @@
                     <TextBlock
                         Grid.Column="0"
                         Text="Nom client :"
-                        FontFamily="Montserrat"
-                        FontSize="36"
+                        Classes="h3"
                         VerticalAlignment="Center"/>
 
                     <TextBox
@@ -46,8 +44,7 @@
                     <TextBlock
                         Grid.Column="0"
                         Text="Prénom Client :"
-                        FontFamily="Montserrat"
-                        FontSize="36"
+                        Classes="h3"
                         VerticalAlignment="Center"/>
 
                     <TextBox
@@ -56,13 +53,12 @@
                         Height="50"/>
                 </Grid>
                 
-                <Grid ColumnDefinitions="250,*">
                     <TextBlock 
+                        Classes="error"
                         Text="{Binding ErrorMessage}" 
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"/>
-                </Grid>
-
+                    
             </StackPanel>
         </Border>
 
@@ -71,18 +67,10 @@
             Width="254"
             Height="65"
             HorizontalAlignment="Center"
+            Classes="primary"
             Content="Recherche"
             Command="{Binding GetBookingsToCheckinByClientCommand}">
 
-            <Button.Styles>
-                <Style Selector="Button">
-                    <Setter Property="Background" Value="#2D494C"/>
-                    <Setter Property="Foreground" Value="#E0C64D"/>
-                    <Setter Property="FontFamily" Value="Montserrat"/>
-                    <Setter Property="FontSize" Value="32"/>
-                    <Setter Property="FontWeight" Value="SemiBold"/>
-                </Style>
-            </Button.Styles>
 
         </Button>
 

@@ -39,7 +39,8 @@
             Background="White">
 
             <TextBlock
-                Text="Contenu"
+                Text="Bienvenue"
+                Classes="h2"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"/>
 

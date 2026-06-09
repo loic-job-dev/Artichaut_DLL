@@ -35,12 +35,28 @@
 
         <Style Selector="TextBlock.h2">
             <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
-            <Setter Property="FontSize" Value="36" />
+            <Setter Property="FontSize" Value="32" />
+        </Style>
+        
+        <Style Selector="TextBlock.h3">
+            <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
+            <Setter Property="FontSize" Value="28" />
+        </Style>
+        
+        <Style Selector="TextBlock.h4">
+            <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
+            <Setter Property="FontSize" Value="24" />
         </Style>
 
         <Style Selector="TextBlock.body">
             <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
             <Setter Property="FontSize" Value="24" />
+        </Style>
+        
+        <Style Selector="TextBlock.error">
+            <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="#7A1F2B" />
         </Style>
         
         <Style Selector="TextBox">
@@ -55,6 +71,20 @@
             <Setter Property="FontSize" Value="32" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        
+        <Style Selector="Button.menu">
+            <Setter Property="FontFamily" Value="{StaticResource MontserratSemiBold}" />
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        
+        <Style Selector="ListBoxItem">
+            <Setter Property="Margin" Value="0,16,0,4"/>
             <Setter Property="Padding" Value="0"/>
         </Style>
     </Application.Styles>

@@ -10,19 +10,14 @@
 
     <ScrollViewer>
 
-        <ItemsControl ItemsSource="{Binding Bookings}">
-
-            <ItemsControl.ItemTemplate>
-
+        <ListBox ItemsSource="{Binding Bookings}"
+                 Background="Transparent">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-
                     <components:BookingCard/>
-
                 </DataTemplate>
-
-            </ItemsControl.ItemTemplate>
-
-        </ItemsControl>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </ScrollViewer>
 
