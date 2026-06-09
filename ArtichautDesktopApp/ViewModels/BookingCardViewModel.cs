@@ -1,28 +1,21 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using ArtichautDesktopApp.Mappers;
 using ArtichautDesktopApp.Models;
-using ArtichautLibrary;
-using ArtichautLibrary.Services;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace ArtichautDesktopApp.ViewModels;
 
 public partial class BookingCardViewModel : ViewModelBase
 {
-    private  readonly IBookingService _bookingService;
     public Booking Booking { get; }
     
-    public event Action<Booking>? BookingSucceeded;
+    public event Func<Booking, Task>? CheckInRequested;
 
     public BookingCardViewModel(
-        Booking booking,
-        IBookingService bookingService)
+        Booking booking)
     {
         Booking = booking;
-        _bookingService = bookingService;
     }
 
     public string Description =>
@@ -35,29 +28,7 @@ public partial class BookingCardViewModel : ViewModelBase
     [RelayCommand]
     private async Task CheckIn()
     {
-        
-        Console.WriteLine($"Status      : {Booking.Status}");
-        Console.WriteLine($"StartDate   : {Booking.StartDate}");
-        Console.WriteLine($"RoomTypeId  : {Booking.RoomTypes[0].Id}");
-        Console.WriteLine($"BookingId   : {Booking.Id}");
-        
-        var result = await _bookingService.Checkin(
-            Booking.Status.ToString(), 
-            Booking.StartDate, 
-            Booking.RoomTypes[0].Id.ToString(), 
-            Booking.Id.ToString());
-        
-        if (result.Success)
-        {
-            var booking = result.Data.ToModel();
-
-            Console.WriteLine(booking.ToString());
-            BookingSucceeded?.Invoke(booking);
-        }
-        else
-        {
-            // errorMessage = result.ErrorMessage;
-            Console.WriteLine(result.ErrorMessage);
-        }
+        if (CheckInRequested != null)
+            await CheckInRequested.Invoke(Booking);
     }
 }
