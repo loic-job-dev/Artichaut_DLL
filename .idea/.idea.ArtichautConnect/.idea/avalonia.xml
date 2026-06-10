@@ -5,6 +5,7 @@
       <map>
         <entry key="ArtichautDesktopApp/App.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/BookingCheckoutResultsView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/BookingForOptionView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/BookingResultsView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/BookingSearchView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/CheckinView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />

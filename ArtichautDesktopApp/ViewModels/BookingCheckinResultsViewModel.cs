@@ -73,7 +73,7 @@ public class BookingCheckinResultsViewModel : ViewModelBase
         else
         {
             
-            Console.WriteLine(result.ErrorMessage);
+            // Console.WriteLine(result.ErrorMessage);
         }
     }
 }

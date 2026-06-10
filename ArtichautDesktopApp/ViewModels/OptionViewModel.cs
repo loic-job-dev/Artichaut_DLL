@@ -8,6 +8,7 @@ public partial class OptionViewModel : ViewModelBase
 {
     private readonly INavigationService _navigation;
     private  readonly IBookingService _bookingService;
+    private readonly IOptionService _optionService;
 
     public SideMenuViewModel SideMenu { get; }
     
@@ -18,16 +19,22 @@ public partial class OptionViewModel : ViewModelBase
         SideMenuViewModel sideMenu, 
         INavigationService navigation, 
         BookingCheckoutSearchViewModel searchVm, 
-        IBookingService bookingService)
+        IBookingService bookingService,
+        IOptionService optionService)
     {
         SideMenu = sideMenu;
         _navigation = navigation;
         _bookingService = bookingService;
+        _optionService = optionService;
         
         searchVm.SearchSucceeded += bookings =>
         {
-            CurrentContent =
-                new BookingCheckoutResultsViewModel(bookings, bookingService, "Ajouter");
+            var bookingOptionVm = new BookingForOptionViewModel(
+                 bookings,
+                 optionService,
+                "Ajouter");
+            
+            CurrentContent = bookingOptionVm;
         };
         
         CurrentContent = searchVm;

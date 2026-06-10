@@ -12,16 +12,19 @@ namespace ArtichautDesktopApp.ViewModels;
 
 public class BookingForOptionViewModel : ViewModelBase
 {
-    private readonly IBookingService _bookingService;
+    // private readonly IBookingService _bookingService;
+    private readonly IOptionService _optionService;
 
     public ObservableCollection<BookingCardViewModel> Bookings { get; }
 
     public BookingForOptionViewModel(
         List<Booking> bookings,
-        IBookingService bookingService,
+        // IBookingService bookingService,
+        IOptionService optionService,
         string buttonName)
     {
-        _bookingService = bookingService;
+        // _bookingService = bookingService;
+        _optionService = optionService;
 
         Bookings = new ObservableCollection<BookingCardViewModel>();
 
@@ -30,7 +33,8 @@ public class BookingForOptionViewModel : ViewModelBase
             string bookingDescription = 
             $"Du {booking.StartDate:dd/MM/yyyy} au {booking.EndDate:dd/MM/yyyy}, " +
                 $"pour {booking.AdultCount + booking.ChildrenCount} personnes, " +
-                $"en {booking.RoomTypes.FirstOrDefault()?.Description ?? "chambre"}.";
+                $"en {booking.RoomTypes.FirstOrDefault()?.Description ?? "chambre"}.\n" +
+                $"Chambre {booking.Rooms[0].Number}.";
             
             var card = new BookingCardViewModel(
                 booking,
@@ -46,32 +50,16 @@ public class BookingForOptionViewModel : ViewModelBase
     
     private async Task OnAddOptionRequested(Booking booking)
     {
-        var result = await _bookingService.Checkout(
-            booking.Id.ToString());
+        var result = await _optionService.GetOptions();
         
         if (result.Success)
         {
-            var bookingResult = result.Data.ToModel();
-            
-            string bookingDescription = 
-                $"Du {bookingResult.StartDate:dd/MM/yyyy} au {bookingResult.EndDate:dd/MM/yyyy}, " +
-                $"pour {bookingResult.AdultCount + bookingResult.ChildrenCount} personnes, " +
-                $"en {bookingResult.RoomTypes.FirstOrDefault()?.Description ?? "chambre"}.\n" +
-                $"Chambre {bookingResult.Rooms[0].Number}";
-            
-            var card = new BookingCardViewModel(
-                bookingResult,
-                bookingDescription,
-                null,
-                null);
-            
-            Bookings.Clear();
-            Bookings.Add(card);
-            
+            Console.WriteLine(result.Data[0].Description);
+            Console.WriteLine(result.Data[1].Description);
         }
         else
         {
-             Console.WriteLine(result.ErrorMessage);
+            Console.WriteLine(result.ErrorMessage);
         }
     }
 }

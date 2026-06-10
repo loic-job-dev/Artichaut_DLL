@@ -72,7 +72,7 @@ public class BookingCheckoutResultsViewModel : ViewModelBase
         }
         else
         {
-             Console.WriteLine(result.ErrorMessage);
+             // Console.WriteLine(result.ErrorMessage);
         }
     }
 }
