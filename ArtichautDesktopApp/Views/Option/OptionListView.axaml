@@ -13,19 +13,30 @@
         CornerRadius="10"
         Padding="24">
 
-        <ItemsControl ItemsSource="{Binding Options}">
+        <StackPanel Spacing="12">
 
-            <ItemsControl.ItemTemplate>
+            <ItemsControl ItemsSource="{Binding Options}">
 
-                <DataTemplate>
+                <ItemsControl.ItemTemplate>
 
-                    <option1:OptionRowView/>
+                    <DataTemplate>
 
-                </DataTemplate>
+                        <option1:OptionRowView/>
 
-            </ItemsControl.ItemTemplate>
+                    </DataTemplate>
 
-        </ItemsControl>
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+
+            <TextBlock
+                Text="{Binding ErrorMessage}"
+                Classes="error"
+                Foreground="Crimson"
+                HorizontalAlignment="Center"
+                TextWrapping="Wrap"/>
+
+        </StackPanel>
 
     </Border>
 
