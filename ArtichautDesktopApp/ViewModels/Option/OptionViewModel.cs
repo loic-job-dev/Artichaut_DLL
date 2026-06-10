@@ -1,8 +1,9 @@
 using ArtichautDesktopApp.Services;
+using ArtichautDesktopApp.ViewModels.Checkout;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace ArtichautDesktopApp.ViewModels;
+namespace ArtichautDesktopApp.ViewModels.Option;
 
 public partial class OptionViewModel : ViewModelBase
 {

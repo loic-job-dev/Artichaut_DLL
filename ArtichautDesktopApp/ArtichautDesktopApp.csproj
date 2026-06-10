@@ -32,8 +32,36 @@
         <DependentUpon>BookingSearchView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\BookingCheckinResultsView.axaml.cs">
-        <DependentUpon>BookingResultsView.axaml</DependentUpon>
+      <Compile Update="Views\Checkin\CheckinView.axaml.cs">
+        <DependentUpon>CheckinView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Checkout\CheckoutView.axaml.cs">
+        <DependentUpon>CheckoutView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Checkin\BookingCheckinResultsView.axaml.cs">
+        <DependentUpon>BookingCheckinResultsView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Checkout\BookingCheckoutResultsView.axaml.cs">
+        <DependentUpon>BookingCheckoutResultsView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Option\BookingForOptionView.axaml.cs">
+        <DependentUpon>BookingForOptionView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Option\OptionListView.axaml.cs">
+        <DependentUpon>OptionListView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Option\OptionRowView.axaml.cs">
+        <DependentUpon>OptionRowView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Option\OptionView.axaml.cs">
+        <DependentUpon>OptionView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

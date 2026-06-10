@@ -8,7 +8,7 @@ using ArtichautDesktopApp.Models;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.Input;
 
-namespace ArtichautDesktopApp.ViewModels;
+namespace ArtichautDesktopApp.ViewModels.Option;
 
 public class BookingForOptionViewModel : ViewModelBase
 {

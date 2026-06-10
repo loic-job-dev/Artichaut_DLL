@@ -4,12 +4,12 @@ using ArtichautDesktopApp.Mappers;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.Input;
 
-namespace ArtichautDesktopApp.ViewModels;
+namespace ArtichautDesktopApp.ViewModels.Checkin;
 
-public partial class BookingCheckoutSearchViewModel
+public partial class BookingCheckinSearchViewModel
     : BookingSearchBaseViewModel
 {
-    public BookingCheckoutSearchViewModel(
+    public BookingCheckinSearchViewModel(
         IBookingService bookingService)
         : base(bookingService)
     {
@@ -19,7 +19,7 @@ public partial class BookingCheckoutSearchViewModel
     protected override async Task ExecuteSearch()
     {
         var result =
-            await BookingService.GetBookingsToCheckoutByClient(
+            await BookingService.GetBookingsToCheckinByClient(
                 FirstName,
                 LastName);
 

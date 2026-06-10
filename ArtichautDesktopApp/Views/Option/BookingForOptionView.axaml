@@ -3,10 +3,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:components="clr-namespace:ArtichautDesktopApp.Views.Components"
-             xmlns:vm="clr-namespace:ArtichautDesktopApp.ViewModels"
+             xmlns:option="clr-namespace:ArtichautDesktopApp.ViewModels.Option"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="ArtichautDesktopApp.Views.BookingCheckinResultsView"
-             x:DataType="vm:BookingCheckinResultsViewModel">
+             x:Class="ArtichautDesktopApp.Views.Option.BookingForOptionView"
+             x:DataType="option:BookingForOptionViewModel">
 
     <ScrollViewer>
 

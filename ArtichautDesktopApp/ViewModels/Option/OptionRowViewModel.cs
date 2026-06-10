@@ -1,7 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace ArtichautDesktopApp.ViewModels;
+namespace ArtichautDesktopApp.ViewModels.Option;
 
 public partial class OptionRowViewModel : ViewModelBase
 {

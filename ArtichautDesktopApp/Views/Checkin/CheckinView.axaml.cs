@@ -2,11 +2,11 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace ArtichautDesktopApp.Views;
+namespace ArtichautDesktopApp.Views.Checkin;
 
-public partial class OptionView : UserControl
+public partial class CheckinView : UserControl
 {
-    public OptionView()
+    public CheckinView()
     {
         InitializeComponent();
     }

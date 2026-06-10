@@ -1,5 +1,7 @@
-using System;
 using ArtichautDesktopApp.Services;
+using ArtichautDesktopApp.ViewModels.Checkin;
+using ArtichautDesktopApp.ViewModels.Checkout;
+using ArtichautDesktopApp.ViewModels.Option;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

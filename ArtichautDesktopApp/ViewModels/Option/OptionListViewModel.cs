@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace ArtichautDesktopApp.ViewModels;
+namespace ArtichautDesktopApp.ViewModels.Option;
 
 public class OptionListViewModel : ViewModelBase
 {

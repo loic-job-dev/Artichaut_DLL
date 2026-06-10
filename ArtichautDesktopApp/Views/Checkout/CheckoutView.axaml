@@ -3,10 +3,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:components="clr-namespace:ArtichautDesktopApp.Views.Components"
-             xmlns:vm="clr-namespace:ArtichautDesktopApp.ViewModels"
+             xmlns:checkout="clr-namespace:ArtichautDesktopApp.ViewModels.Checkout"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="ArtichautDesktopApp.Views.CheckinView"
-             x:DataType="vm:CheckinViewModel">
+             x:Class="ArtichautDesktopApp.Views.Checkout.CheckoutView"
+             x:DataType="checkout:CheckoutViewModel">
     
     <Grid>
 

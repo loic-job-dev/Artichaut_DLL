@@ -2,9 +2,9 @@ using ArtichautDesktopApp.Services;
 using ArtichautLibrary.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace ArtichautDesktopApp.ViewModels;
+namespace ArtichautDesktopApp.ViewModels.Checkin;
 
-public partial class CheckoutViewModel : ViewModelBase
+public partial class CheckinViewModel : ViewModelBase
 {
     private readonly INavigationService _navigation;
     private  readonly IBookingService _bookingService;
@@ -14,10 +14,10 @@ public partial class CheckoutViewModel : ViewModelBase
     [ObservableProperty]
     private ViewModelBase currentContent;
     
-    public CheckoutViewModel(
+    public CheckinViewModel(
         SideMenuViewModel sideMenu, 
         INavigationService navigation, 
-        BookingCheckoutSearchViewModel searchVm,
+        BookingCheckinSearchViewModel searchVm,
         IBookingService bookingService)
     {
         SideMenu = sideMenu;
@@ -27,7 +27,7 @@ public partial class CheckoutViewModel : ViewModelBase
         searchVm.SearchSucceeded += bookings =>
         {
             CurrentContent =
-                new BookingCheckoutResultsViewModel(bookings, bookingService, "Check-out");
+                new BookingCheckinResultsViewModel(bookings, bookingService);
         };
         
         CurrentContent = searchVm;
