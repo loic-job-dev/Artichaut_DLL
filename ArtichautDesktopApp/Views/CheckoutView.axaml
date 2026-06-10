@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:ArtichautDesktopApp.Views.Components"
+             xmlns:vm="clr-namespace:ArtichautDesktopApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ArtichautDesktopApp.Views.CheckoutView"
+             x:DataType="vm:CheckoutViewModel">
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="251"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="295"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Header -->
+        <components:Header
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"/>
+
+        <!-- Menu -->
+        <components:SideMenu
+            Grid.Row="1"
+            Grid.Column="0"
+            DataContext="{Binding SideMenu}"/>
+
+        <!-- Zone principale -->
+        <ContentControl
+            Grid.Row="1"
+            Grid.Column="1"
+            Content="{Binding CurrentContent}" />
+
+    </Grid>
+    
+</UserControl>

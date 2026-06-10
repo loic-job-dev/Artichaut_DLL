@@ -51,6 +51,7 @@ public partial class App : Avalonia.Application
         services.AddTransient<ViewModels.LandingViewModel>();
         services.AddSingleton<ViewModels.SideMenuViewModel>();
         services.AddTransient<ViewModels.CheckinViewModel>();
+        services.AddTransient<ViewModels.CheckoutViewModel>();
         services.AddTransient<ViewModels.OptionViewModel>();
         services.AddTransient<ViewModels.BookingCheckinSearchViewModel>();
         services.AddTransient<ViewModels.BookingCheckoutSearchViewModel>();

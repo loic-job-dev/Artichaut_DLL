@@ -26,6 +26,7 @@ public partial class SideMenuViewModel : ObservableObject
     [RelayCommand]
     private void GoToCheckOut()
     {
+        _navigation.NavigateTo<CheckoutViewModel>();
     }
 
     [RelayCommand]
