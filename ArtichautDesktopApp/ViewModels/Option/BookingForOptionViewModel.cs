@@ -17,6 +17,8 @@ public class BookingForOptionViewModel : ViewModelBase
 
     public ObservableCollection<BookingCardViewModel> Bookings { get; }
 
+    public event Action<Booking, List<Models.Option>>? SearchOptionsSucceeded;
+    
     public BookingForOptionViewModel(
         List<Booking> bookings,
         // IBookingService bookingService,
@@ -54,8 +56,9 @@ public class BookingForOptionViewModel : ViewModelBase
         
         if (result.Success)
         {
-            Console.WriteLine(result.Data[0].Description);
-            Console.WriteLine(result.Data[1].Description);
+            SearchOptionsSucceeded?.Invoke(
+                booking,
+                result.Data.Select(x => x.ToModel()).ToList());
         }
         else
         {

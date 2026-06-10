@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:option="clr-namespace:ArtichautDesktopApp.ViewModels.Option"
+             xmlns:option1="clr-namespace:ArtichautDesktopApp.Views.Option"
+             xmlns:components="clr-namespace:ArtichautDesktopApp.Views.Components"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ArtichautDesktopApp.Views.Option.OptionAdditionView"
+             x:DataType="option:OptionAdditionViewModel">
+    
+    <ScrollViewer>
+
+        <StackPanel
+            MaxWidth="1100"
+            HorizontalAlignment="Center"
+            Margin="40"
+            Spacing="32">
+
+            <!-- Titre -->
+
+            <TextBlock
+                Text="Ajouter des options"
+                Classes="h1"
+                HorizontalAlignment="Center"/>
+
+            <!-- Réservation -->
+
+            <components:BookingCard
+                DataContext="{Binding BookingCard}"/>
+
+            <!-- Liste des options -->
+
+            <TextBlock
+                Text="Options disponibles"
+                Classes="h3"/>
+
+            <option1:OptionListView
+                DataContext="{Binding OptionList}" />
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</UserControl>

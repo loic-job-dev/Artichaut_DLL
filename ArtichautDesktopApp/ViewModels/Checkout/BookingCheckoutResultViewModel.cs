@@ -28,9 +28,10 @@ public class BookingCheckoutResultsViewModel : ViewModelBase
         foreach (var booking in bookings)
         {
             string bookingDescription = 
-            $"Du {booking.StartDate:dd/MM/yyyy} au {booking.EndDate:dd/MM/yyyy}, " +
+                $"Du {booking.StartDate:dd/MM/yyyy} au {booking.EndDate:dd/MM/yyyy}, " +
                 $"pour {booking.AdultCount + booking.ChildrenCount} personnes, " +
-                $"en {booking.RoomTypes.FirstOrDefault()?.Description ?? "chambre"}.";
+                $"en {booking.RoomTypes.FirstOrDefault()?.Description ?? "chambre"}.\n" +
+                $"Chambre {booking.Rooms.FirstOrDefault()?.Number}.";
             
             var card = new BookingCardViewModel(
                 booking,

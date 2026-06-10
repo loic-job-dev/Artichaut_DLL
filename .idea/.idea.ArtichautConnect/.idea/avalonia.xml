@@ -22,6 +22,10 @@
         <entry key="ArtichautDesktopApp/Views/LoginForm.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/LoginView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/MainWindow.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Option/OptionAdditionView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Option/OptionListView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Option/OptionRowView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Option/OptionView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/OptionListView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/OptionRowView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/OptionView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />

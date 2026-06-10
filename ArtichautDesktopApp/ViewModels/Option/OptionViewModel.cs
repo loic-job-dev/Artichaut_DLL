@@ -36,6 +36,13 @@ public partial class OptionViewModel : ViewModelBase
                 "Ajouter");
             
             CurrentContent = bookingOptionVm;
+
+            bookingOptionVm.SearchOptionsSucceeded += (booking, options) =>
+            {
+                CurrentContent =
+                    new OptionAdditionViewModel(booking, options);
+            };
+            
         };
         
         CurrentContent = searchVm;

@@ -8,25 +8,25 @@
              x:Class="ArtichautDesktopApp.Views.Option.OptionListView"
              x:DataType="option:OptionListViewModel">
 
-    <StackPanel
-        HorizontalAlignment="Stretch"
-        Margin="40,0"
-        Spacing="16">
-
-        <TextBlock
-            Text="Options disponibles"
-            Classes="h2"/>
+    <Border
+        Background="#2D494C"
+        CornerRadius="10"
+        Padding="24">
 
         <ItemsControl ItemsSource="{Binding Options}">
 
             <ItemsControl.ItemTemplate>
+
                 <DataTemplate>
+
                     <option1:OptionRowView/>
+
                 </DataTemplate>
+
             </ItemsControl.ItemTemplate>
 
         </ItemsControl>
 
-    </StackPanel>
+    </Border>
 
 </UserControl>

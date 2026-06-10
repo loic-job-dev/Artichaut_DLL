@@ -71,6 +71,12 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
         </Style>
         
+        <Style Selector="TextBlock.option">
+            <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="#E0C64D" />
+        </Style>
+        
         <Style Selector="Button.primary">
             <Setter Property="Background" Value="#2D494C" />
             <Setter Property="Foreground" Value="#E0C64D" />
