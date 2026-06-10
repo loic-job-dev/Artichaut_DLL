@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using ArtichautDesktopApp.Models;
 
 namespace ArtichautDesktopApp.ViewModels.Option;
@@ -10,6 +12,13 @@ public class OptionAdditionViewModel : ViewModelBase
     public BookingCardViewModel BookingCard { get; }
 
     public OptionListViewModel OptionList { get; }
+    
+    public event Func<
+        Booking,
+        Models.Option,
+        DateOnly,
+        DateOnly,
+        Task>? OptionAdditionRequested;
 
     public OptionAdditionViewModel(
         Booking booking,
@@ -26,5 +35,14 @@ public class OptionAdditionViewModel : ViewModelBase
             bookingDescription);
 
         OptionList = new OptionListViewModel(options);
+        
+        OptionList.OptionSelected += (option, from, to) =>
+        {
+            OptionAdditionRequested?.Invoke(
+                booking,
+                option,
+                from,
+                to);
+        };
     }
 }

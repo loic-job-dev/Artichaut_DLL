@@ -1,3 +1,7 @@
+using System;
+using System.Threading.Tasks;
+using ArtichautDesktopApp.Mappers;
+using ArtichautDesktopApp.Models;
 using ArtichautDesktopApp.Services;
 using ArtichautDesktopApp.ViewModels.Checkout;
 using ArtichautLibrary.Services;
@@ -39,12 +43,45 @@ public partial class OptionViewModel : ViewModelBase
 
             bookingOptionVm.SearchOptionsSucceeded += (booking, options) =>
             {
-                CurrentContent =
+                var optionVm =
                     new OptionAdditionViewModel(booking, options);
+
+                CurrentContent = optionVm;
+                
+                optionVm.OptionAdditionRequested += OnOptionAdditionRequested;
+
+                CurrentContent = optionVm;
             };
             
         };
         
         CurrentContent = searchVm;
+    }
+    
+    
+    private async Task OnOptionAdditionRequested(
+        Booking booking,
+        Models.Option option,
+        DateOnly from,
+        DateOnly to)
+    {
+        var result =
+            await _optionService.AddOptionToBooking(
+                booking.Id.ToString(),
+                option.Id.ToString(),
+                from,
+                to);
+
+        if (!result.Success)
+        {
+            // afficher erreur
+            return;
+        }
+
+        var updatedBooking =
+            result.Data.ToModel();
+
+        CurrentContent =
+            new BookingSummaryViewModel(updatedBooking);
     }
 }
