@@ -32,7 +32,7 @@
         <DependentUpon>BookingSearchView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\BookingResultsView.axaml.cs">
+      <Compile Update="Views\BookingCheckinResultsView.axaml.cs">
         <DependentUpon>BookingResultsView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>

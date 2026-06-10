@@ -10,15 +10,16 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace ArtichautDesktopApp.ViewModels;
 
-public class BookingResultsViewModel : ViewModelBase
+public class BookingForOptionViewModel : ViewModelBase
 {
     private readonly IBookingService _bookingService;
 
     public ObservableCollection<BookingCardViewModel> Bookings { get; }
 
-    public BookingResultsViewModel(
+    public BookingForOptionViewModel(
         List<Booking> bookings,
-        IBookingService bookingService)
+        IBookingService bookingService,
+        string buttonName)
     {
         _bookingService = bookingService;
 
@@ -34,20 +35,18 @@ public class BookingResultsViewModel : ViewModelBase
             var card = new BookingCardViewModel(
                 booking,
                 bookingDescription,
-                "Check-in",
-                new AsyncRelayCommand(() => OnCheckInRequested(booking))
+                buttonName,
+                new AsyncRelayCommand(() => OnAddOptionRequested(booking))
             );
 
             Bookings.Add(card);
         }
     }
     
-    private async Task OnCheckInRequested(Booking booking)
+    
+    private async Task OnAddOptionRequested(Booking booking)
     {
-        var result = await _bookingService.Checkin(
-            booking.Status.ToString(), 
-            booking.StartDate, 
-            booking.RoomTypes[0].Id.ToString(), 
+        var result = await _bookingService.Checkout(
             booking.Id.ToString());
         
         if (result.Success)
@@ -72,8 +71,7 @@ public class BookingResultsViewModel : ViewModelBase
         }
         else
         {
-            
-            Console.WriteLine(result.ErrorMessage);
+             Console.WriteLine(result.ErrorMessage);
         }
     }
 }

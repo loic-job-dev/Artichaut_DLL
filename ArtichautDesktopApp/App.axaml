@@ -64,6 +64,13 @@
             <Setter Property="FontSize" Value="24" />
         </Style>
         
+        <Style Selector="TextBox.date">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="FontFamily" Value="{StaticResource Montserrat}" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        
         <Style Selector="Button.primary">
             <Setter Property="Background" Value="#2D494C" />
             <Setter Property="Foreground" Value="#E0C64D" />
@@ -72,6 +79,14 @@
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Padding" Value="0"/>
+        </Style>
+        
+        <Style Selector="Button.secondary">
+            <Setter Property="Background" Value="#E0C64D" />
+            <Setter Property="Foreground" Value="#2D494C" />
+            <Setter Property="FontFamily" Value="{StaticResource MontserratSemiBold}" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Padding" Value="12,6" />
         </Style>
         
         <Style Selector="Button.menu">

@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ArtichautDesktopApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ArtichautDesktopApp.Views.OptionRowView"
+             x:DataType="vm:OptionRowViewModel">
+
+    <Border
+        Background="#8BA89A"
+        CornerRadius="10"
+        Padding="20">
+
+        <Grid ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto">
+
+            <!-- Nom option -->
+            <TextBlock
+                Grid.Column="0"
+                Text="{Binding OptionName}"
+                Classes="h4"
+                VerticalAlignment="Center"/>
+
+            <!-- Du -->
+            <TextBlock
+                Grid.Column="1"
+                Margin="20,0,8,0"
+                Text="Du :"
+                Classes="body"
+                VerticalAlignment="Center"/>
+
+            <TextBox
+                Grid.Column="2"
+                Classes="date"
+                Text="{Binding FromDate}" />
+
+            <!-- Au -->
+            <TextBlock
+                Grid.Column="3"
+                Margin="20,0,8,0"
+                Text="Au :"
+                Classes="body"
+                VerticalAlignment="Center"/>
+
+            <TextBox
+                Grid.Column="4"
+                Classes="date"
+                Text="{Binding ToDate}" />
+
+            <!-- Bouton -->
+            <Button
+                Grid.Column="5"
+                Margin="20,0,0,0"
+                Classes="secondary"
+                Content="Ajouter"
+                Command="{Binding AddOptionCommand}" />
+
+        </Grid>
+
+    </Border>
+
+</UserControl>

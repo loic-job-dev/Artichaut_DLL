@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ArtichautDesktopApp.ViewModels;
 
-public partial class CheckinViewModel : ViewModelBase
+public partial class OptionViewModel : ViewModelBase
 {
     private readonly INavigationService _navigation;
     private  readonly IBookingService _bookingService;
@@ -14,10 +14,10 @@ public partial class CheckinViewModel : ViewModelBase
     [ObservableProperty]
     private ViewModelBase currentContent;
     
-    public CheckinViewModel(
+    public OptionViewModel(
         SideMenuViewModel sideMenu, 
         INavigationService navigation, 
-        BookingCheckinSearchViewModel searchVm,
+        BookingCheckoutSearchViewModel searchVm, 
         IBookingService bookingService)
     {
         SideMenu = sideMenu;
@@ -27,7 +27,7 @@ public partial class CheckinViewModel : ViewModelBase
         searchVm.SearchSucceeded += bookings =>
         {
             CurrentContent =
-                new BookingCheckinResultsViewModel(bookings, bookingService);
+                new BookingCheckoutResultsViewModel(bookings, bookingService, "Ajouter");
         };
         
         CurrentContent = searchVm;

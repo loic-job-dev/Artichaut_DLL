@@ -2,11 +2,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:components="clr-namespace:ArtichautDesktopApp.Views.Components"
              xmlns:vm="clr-namespace:ArtichautDesktopApp.ViewModels"
+             xmlns:components="clr-namespace:ArtichautDesktopApp.Views.Components"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="ArtichautDesktopApp.Views.BookingResultsView"
-             x:DataType="vm:BookingResultsViewModel">
+             x:Class="ArtichautDesktopApp.Views.BookingCheckoutResultsView"
+             x:DataType="vm:BookingCheckoutResultsViewModel">
 
     <ScrollViewer>
 

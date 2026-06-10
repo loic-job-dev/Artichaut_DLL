@@ -29,14 +29,14 @@ public partial class SideMenuViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void GoToAddOption()
+    private void GoToOption()
     {
+        _navigation.NavigateTo<OptionViewModel>();
     }
 
     [RelayCommand]
     private void Logout()
     {
-        Console.WriteLine("Logout clicked");
         _authService.Logout();
         _navigation.NavigateTo<LoginViewModel>();
     }

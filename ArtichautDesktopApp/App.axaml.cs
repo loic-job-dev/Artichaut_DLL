@@ -1,5 +1,6 @@
 using System;
 using ArtichautDesktopApp.Services;
+using ArtichautDesktopApp.ViewModels;
 using ArtichautLibrary;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -50,7 +51,9 @@ public partial class App : Avalonia.Application
         services.AddTransient<ViewModels.LandingViewModel>();
         services.AddSingleton<ViewModels.SideMenuViewModel>();
         services.AddTransient<ViewModels.CheckinViewModel>();
-        services.AddTransient<ViewModels.BookingSearchViewModel>();
-
+        services.AddTransient<ViewModels.OptionViewModel>();
+        services.AddTransient<ViewModels.BookingCheckinSearchViewModel>();
+        services.AddTransient<ViewModels.BookingCheckoutSearchViewModel>();
+        services.AddTransient<ViewModels.BookingForOptionViewModel>();
     }
 }

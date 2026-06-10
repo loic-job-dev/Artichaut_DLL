@@ -41,7 +41,7 @@
                 Content="Ajouter une option"
                 HorizontalContentAlignment="Left"
                 Classes="menu"
-                Command="{Binding GoToAddOptionCommand}"/>
+                Command="{Binding GoToOptionCommand}"/>
 
             <Separator Margin="0,20"/>
 

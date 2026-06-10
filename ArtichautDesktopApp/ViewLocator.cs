@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using ArtichautDesktopApp.ViewModels;
+using ArtichautDesktopApp.Views;
 
 namespace ArtichautDesktopApp;
 
@@ -18,7 +19,10 @@ public class ViewLocator : IDataTemplate
     {
         if (param is null)
             return null;
-
+        
+        if (param is BookingSearchBaseViewModel)
+            return new BookingSearchView();
+        
         var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
         var type = Type.GetType(name);
 
