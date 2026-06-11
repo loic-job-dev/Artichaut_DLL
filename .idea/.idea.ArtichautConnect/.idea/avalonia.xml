@@ -10,6 +10,7 @@
         <entry key="ArtichautDesktopApp/Views/BookingResultsView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/BookingSearchView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/CheckinView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Checkout/BookingCheckoutResultsView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/CheckoutView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/Components/BookingCard.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/Components/BookingResults.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
@@ -22,6 +23,8 @@
         <entry key="ArtichautDesktopApp/Views/LoginForm.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/LoginView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/MainWindow.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Option/BookingForOptionView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
+        <entry key="ArtichautDesktopApp/Views/Option/BookingSummaryView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/Option/OptionAdditionView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/Option/OptionListView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />
         <entry key="ArtichautDesktopApp/Views/Option/OptionRowView.axaml" value="ArtichautDesktopApp/ArtichautDesktopApp.csproj" />

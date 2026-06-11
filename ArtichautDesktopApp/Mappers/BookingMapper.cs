@@ -17,13 +17,19 @@ public static class BookingMapper
             ChildrenCount = response.ChildrenNumber,
             TotalPrice = response.FinalPrice ?? 0,
             Status = ParseStatus(response.Status),
-            RoomTypes = response.RoomTypes
+            RoomTypes = (response.RoomTypes ?? [])
                 .Select(x => x.ToModel())
                 .ToList(),
 
-            Rooms = response.Rooms
+            Rooms = (response.Rooms ?? [])
                 .Select(x => x.ToModel())
-                .ToList()
+                .ToList(),
+            
+            Options = response.Options
+                .Select(x => x.ToModel())
+                .Where(x => x != null)
+                .Cast<Option>()
+                .ToList(),
         };
     }
 

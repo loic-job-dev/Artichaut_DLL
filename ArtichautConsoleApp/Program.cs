@@ -51,14 +51,14 @@ class Program
         {
             Console.WriteLine(authClient.ErrorMessage);
         }
-
-         var result = await client.Booking.CreateBooking(
-         DateOnly.FromDateTime(DateTime.Now),
-         DateOnly.FromDateTime(DateTime.Now.AddDays(1)),
-         2, 
-         0, 
-         "STD");
         
+        var result = await client.Booking.CreateBooking(
+            DateOnly.FromDateTime(DateTime.Now), 
+            DateOnly.FromDateTime(DateTime.Now.AddDays(1)), 
+            2, 
+            0, 
+            "STD");
+         
         //Test for checkin
         string status = result.Data.Status;
         DateOnly startBookedDate = result.Data.StartBookedDate;

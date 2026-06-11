@@ -15,4 +15,18 @@ public static class OptionMapper
             Price = response.Price.ToModel()
         };
     }
+
+    public static Option? ToModel(this OptionReservation response)
+    {
+        if (response.option == null)
+            return null;
+
+        return new Option
+        {
+            Id = response.id,
+            Name = response.option.Name,
+            Description = response.option.Description,
+            Price = response.option.Price.ToModel()
+        };
+    }
 }

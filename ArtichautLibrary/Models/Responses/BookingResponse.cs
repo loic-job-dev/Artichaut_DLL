@@ -28,6 +28,7 @@ public record BookingResponse(
     int RoomUnitPrice,
     string Status,
     List<RoomTypeResponse> RoomTypes,
-    List<RoomResponse> Rooms,
+    List<RoomResponse>? Rooms,
+    List<OptionReservation>? Options,
     int? FinalPrice
     );

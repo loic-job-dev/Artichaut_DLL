@@ -21,4 +21,6 @@ public class Booking
 
     public IReadOnlyList<RoomType> RoomTypes { get; init; } = [];
     public IReadOnlyList<Room> Rooms { get; init; } = [];
+    
+    public IReadOnlyList<Option> Options { get; init; } = [];
 }
