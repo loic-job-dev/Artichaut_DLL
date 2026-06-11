@@ -1,3 +1,4 @@
+using System;
 using ArtichautDesktopApp.Models;
 using ArtichautLibrary;
 
@@ -19,7 +20,9 @@ public static class OptionMapper
     public static Option? ToModel(this OptionReservation response)
     {
         if (response.option == null)
+        {
             return null;
+        }
 
         return new Option
         {

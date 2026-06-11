@@ -23,8 +23,23 @@ public class HandlerResponseHelper
             case HttpStatusCode.OK:
             case HttpStatusCode.Created:
             {
+                //PROD
                 T? data = await response.Content
                     .ReadFromJsonAsync<T>();
+                
+                //DEBUG API RESPONSE
+                // var json = await response.Content.ReadAsStringAsync();
+                //
+                // Console.WriteLine("=== JSON API ===");
+                // Console.WriteLine(json);
+                // Console.WriteLine("================");
+                //
+                // T? data = System.Text.Json.JsonSerializer.Deserialize<T>(
+                //     json,
+                //     new System.Text.Json.JsonSerializerOptions
+                //     {
+                //         PropertyNameCaseInsensitive = true
+                //     });
                 
                return new ApiResult<T>(
                     true,

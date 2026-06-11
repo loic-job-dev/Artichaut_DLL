@@ -25,6 +25,7 @@ public partial class OptionRowViewModel : ViewModelBase
     {
         _option = option;
         _parent = parent;
+        OptionName = _option.Name;
     }
 
     [RelayCommand]

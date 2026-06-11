@@ -44,4 +44,19 @@ public static class BookingMapper
             _ => BookingStatus.UNKNOWN
         };
     }
+    
+    public static Booking ToBooking(this BookingCheckout checkout)
+    {
+        return new Booking
+        {
+            Id = checkout.Id,
+            StartDate = checkout.StartDate,
+            EndDate = checkout.EndDate,
+            AdultCount = checkout.AdultCount,
+            ChildrenCount = checkout.ChildrenCount,
+            TotalPrice = checkout.TotalPrice,
+            Rooms = checkout.Rooms,
+            RoomTypes = checkout.RoomTypes
+        };
+    }
 }

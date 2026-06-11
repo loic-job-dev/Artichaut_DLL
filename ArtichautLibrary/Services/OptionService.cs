@@ -43,7 +43,7 @@ public class OptionService: IOptionService
     /// <see cref="BookingResponse"/> when successful; otherwise
     /// an error message.
     /// </returns>
-    public async Task<ApiResult<BookingResponse>> AddOptionToBooking(
+    public async Task<ApiResult<BookingCheckoutResponse>> AddOptionToBooking(
         string bookingId,
         string optionId,
         DateOnly startDate,
@@ -59,6 +59,6 @@ public class OptionService: IOptionService
             request
         );
         
-        return await HandlerResponseHelper.HandlerResponse<BookingResponse>(response);
+        return await HandlerResponseHelper.HandlerResponse<BookingCheckoutResponse>(response);
     }
 }

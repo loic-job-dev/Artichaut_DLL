@@ -26,7 +26,7 @@ public interface IOptionService
     ///An <see cref="ApiResult{T}"/> containing the created
     /// <see cref="BookingResponse"/>.
     /// </returns>
-    Task<ApiResult<BookingResponse>> AddOptionToBooking(
+    Task<ApiResult<BookingCheckoutResponse>> AddOptionToBooking(
         string bookingId,
         string optionId,
         DateOnly startDate,

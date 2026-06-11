@@ -59,7 +59,7 @@ public class BookingCheckoutResultsViewModel : ViewModelBase
                 $"pour {bookingResult.AdultCount + bookingResult.ChildrenCount} personnes, " +
                 $"en {bookingResult.RoomTypes.FirstOrDefault()?.Description ?? "chambre"}.\n" +
                 $"Chambre {bookingResult.Rooms[0].Number}.\n" +
-                $"\nMontant TTC à régler : {bookingResult.TotalPrice}";
+                $"\nMontant TTC à régler : {bookingResult.TotalPrice} €";
             
             var card = new BookingCardViewModel(
                 bookingResult,

@@ -77,7 +77,8 @@ public partial class OptionViewModel : ViewModelBase
             // afficher erreur
             return;
         }
-
+        
+        
         var updatedBooking =
             result.Data.ToModel();
 
