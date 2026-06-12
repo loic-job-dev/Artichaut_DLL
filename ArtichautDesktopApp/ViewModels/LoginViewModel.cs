@@ -30,11 +30,23 @@ public partial class LoginViewModel : ViewModelBase
     [RelayCommand]
     private async Task Login()
     {
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        {
+            ErrorMessage = "Merci de renseigner un email et un mot de passe";
+            return;
+        }
+        
+        bool isValidFormat = System.Text.RegularExpressions.Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        if (!isValidFormat)
+        {
+            ErrorMessage = "Format d'email incorrect";
+            return;
+        }
+        
         var result = await _authService.Login(Email, Password);
         
         if (result.Success)
         {
-            ErrorMessage = "OK";
             _navigation.NavigateTo<LandingViewModel>();
         }
         else

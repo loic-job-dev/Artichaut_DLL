@@ -61,6 +61,17 @@ public class HandlerResponseHelper
                     message
                 );
             }
+            
+            case HttpStatusCode.ServiceUnavailable:
+            {
+                var message = await response.Content.ReadAsStringAsync();
+
+                return new ApiResult<T>(
+                    false,
+                    default,
+                    message
+                );
+            }
 
             default:
             {

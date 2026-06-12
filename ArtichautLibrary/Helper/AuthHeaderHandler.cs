@@ -1,3 +1,4 @@
+using System.Net;
 using ArtichautLibrary.Providers;
 
 namespace ArtichautLibrary.Helper;
@@ -12,19 +13,31 @@ public class AuthHeaderHandler : DelegatingHandler
     {
         _tokenProvider = tokenProvider;
     }
-    
+
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
-        var token = _tokenProvider.GetToken();
-
-        if (!string.IsNullOrEmpty(token))
+        try
         {
-            request.Headers.Authorization =
-                new AuthenticationHeaderValue("Bearer", token);
-        }
+            var token = _tokenProvider.GetToken();
 
-        return await base.SendAsync(request, cancellationToken);
+            if (!string.IsNullOrEmpty(token))
+            {
+                request.Headers.Authorization =
+                    new AuthenticationHeaderValue("Bearer", token);
+            }
+
+            return await base.SendAsync(request, cancellationToken);
+        }
+        catch (HttpRequestException ex)
+        {
+            return new HttpResponseMessage(HttpStatusCode.ServiceUnavailable)
+            {
+                Content = new StringContent(
+                    "Impossible de contacter l'API"
+                )
+            };
+        }
     }
 }
