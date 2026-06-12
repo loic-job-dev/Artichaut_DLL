@@ -41,6 +41,8 @@ public partial class App : Avalonia.Application
     {
         // API Client
         services.AddArtichautClient("http://localhost:8080");
+        //FOR DEMO WITH SAME NETWORK
+        //services.AddArtichautClient("http://10.42.154.77:8080");
 
         // Navigation
         services.AddSingleton<INavigationService, NavigationService>();
